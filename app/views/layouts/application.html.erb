@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cashnow</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+       <%= render 'home/header' %>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+       <%= render 'home/sidebar' %>
+       <div class="master-page" id="main" onmouseover="mouseOver()" onmouseout="mouseOut()">
+       <%= yield %>
+       </div>
+       <script>
+function mouseOver() {
+  document.getElementById("demo").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "190px"
+}
+
+function mouseOut() {
+  document.getElementById("demo").style.width = "60px";
+  document.getElementById("main").style.marginLeft = "0px"
+}
+</script>
+    
+  </body>
+</html>
