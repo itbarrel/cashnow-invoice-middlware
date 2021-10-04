@@ -1,0 +1,23 @@
+<h1>vendors</h1>
+    <%= link_to "Create New Vendor" , new_client_vendor_path , class: "btn btn-info" %> | 
+    <%= link_to "Back" , clients_path, class: "btn btn-info"%>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Vendor Code</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <% @vendors.each do |vendor| %>
+            <td><%=vendor.vendor_code %>
+            </td>
+            <td>
+                <%= link_to '', edit_client_vendor_url(@client, vendor), class: "fa fa-edit"%>
+                <%= link_to '', client_path(@client, vendor),  method: :delete, data: { confirm: 'Are you sure?' } ,class: "fa fa-trash"%>
+            </td>
+        </tr>
+          <% end %>
+    </tbody>
+</table>

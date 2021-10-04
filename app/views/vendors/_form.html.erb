@@ -1,0 +1,11 @@
+<%= form_for( [@client, @vendor] ) do |form| %>
+  <div class="field">
+  <%= form.label :vendor_code %>
+  <br/>
+    <%= form.text_field :vendor_code ,:required => true,class: "form-control-xs" %>
+  </div>
+  <div class="actions">
+    <%= form.submit class:'btn btn-info' %>
+  </div>
+  <br/>
+<% end %>

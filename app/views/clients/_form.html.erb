@@ -1,0 +1,42 @@
+<%= form_with model: @client do |form| %>
+  <div class="field">
+  <%= form.label :client_code %>
+  <br/>
+    <%= form.text_field :client_code ,:required => true,class: "form-control-xs" %>
+  </div>
+  <br/>
+  <div class="field">
+  <%= form.label :password %>
+  <br/>
+    <%= form.text_field :password,:required => true ,class: "form-control-xs" %>
+  </div>
+  <br/>
+  <div class="field">
+  <%= form.label :email %>
+  <br/>
+    <%= form.text_field :email,:required => true ,class: "form-control-xs" %>
+  </div>
+  <br/>
+  <div class="field">
+  <%= form.label :api_url %>
+  <br/>
+    <%= form.text_field :api_url,:required => true ,class: "form-control-xs"%>
+  </div>
+  <br/>
+  <div class="field">
+  <%= form.label :api_method %>
+  <br/>
+    <%= form.select(:api_method, Client.api_methods.collect {|p| [ p.first, p.second ] }, { include_blank: false, prompt: 'Select Method' })%>
+  </div>
+  <br/>
+    <div class="field">
+  <%= form.label :token %>
+  <br/>
+    <%= form.text_field :token,:required => true ,class: "form-control-xs" %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= form.submit class:'btn btn-info' %>
+  </div>
+  <br/>
+<% end %>

@@ -1,0 +1,33 @@
+<h1>Clients</h1>
+<%= link_to "Create New Client" , new_client_path , class: "btn btn-info" %>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Client Code</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>API URL</th>
+            <th>API method</th>
+            <th>Token</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        
+        <% @clients.each do |client| %>
+            <td><%=client.client_code %></td>
+            <td><%=client.password%></td>
+            <td><%=client.email %></td>
+            <td><%=client.api_url %></td>
+            <td><%=client.api_method %></td>
+            <td><%=client.token %></td>
+            <td>
+                <%= link_to '', edit_client_path(client), class: "fa fa-edit"%>
+                <%= link_to '', client_path(client),  method: :delete, data: { confirm: 'Are you sure?' } ,class: "fa fa-trash"%>
+                <%= link_to '', client_vendors_path(client), class: "fa fa-user"%>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
