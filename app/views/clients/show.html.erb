@@ -1,6 +1,16 @@
 <p>
-  <strong>Client Code:</strong>
-  <%= @client.client_code %>
+  <strong>Client Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Company Name:</strong>
+  <%= @client.company_name %>
+</p>
+
+<p>
+  <strong>UserName:</strong>
+  <%= @client.username %>
 </p>
 
 <p>
@@ -9,22 +19,8 @@
 </p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
-
-<p>
-  <strong>API URL:</strong>
-  <%= @client.api_url %>
-</p>
-
-<p>
-  <strong>API method:</strong>
-  <%= @client.api_method %>
-</p>
-
-<p>
   <strong>Token:</strong>
   <%= @client.token %>
 </p>
+
 <%= link_to "Back" , clients_path , class: "btn btn-info" %>

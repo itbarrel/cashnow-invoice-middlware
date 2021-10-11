@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
     before_action :find_client,only: %i[ show edit update destroy ]
+
     def index
         @clients=Client.all
     end
@@ -8,7 +9,8 @@ class ClientsController < ApplicationController
     end
 
     def new
-        @client = Client.new  
+        @client = Client.new
+        @client.login_api = @client.build_login_api
     end
 
     def create
@@ -26,6 +28,7 @@ class ClientsController < ApplicationController
 
     def edit
     end
+
     def update
         respond_to do |format|
             if @client.update(client_params)
@@ -58,9 +61,16 @@ class ClientsController < ApplicationController
         @client = Client.find(params[:id])
     end
 
+    # def find_api
+    #     @api = @client.api.find(params[:id])
+    # end
+
     def client_params
-        par = params.require(:client).permit(:client_code, :password, :email, :api_url, :api_method, :token)
-        par[:api_method] = par[:api_method].to_i
+        par = params.require(:client).permit(:name , :company_name, :username, :password, :token,
+            login_api_attributes: [ :id, :api_type, :api_method, :api_url ]
+        )
+        par[:login_api_attributes][:api_type] = par[:login_api_attributes][:api_type].to_i
+        par[:login_api_attributes][:api_method] = par[:login_api_attributes][:api_method].to_i
         par
     end
 

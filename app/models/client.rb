@@ -1,5 +1,8 @@
 class Client < ApplicationRecord
-    has_many :vendors, dependent: :destroy
+    has_many :apis, -> { fetch_data }, dependent: :destroy
+    has_one :login_api, -> { authenticate }, class_name: 'Api', dependent: :destroy
     
-    enum api_method: [:get_method, :post_method]
+    has_many :vendors, dependent: :destroy
+
+    accepts_nested_attributes_for :login_api
 end

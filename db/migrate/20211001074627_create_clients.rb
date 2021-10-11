@@ -1,11 +1,10 @@
 class CreateClients < ActiveRecord::Migration[6.1]
   def change
     create_table :clients, id: :uuid do |t|
-      t.string     :client_code
-      t.string     :password
-      t.string     :email
-      t.string     :api_url
-      t.integer    :api_method
+      t.string     :name
+      t.string     :company_name
+      t.string     :username
+      t.string     :password      
       t.text       :token
       t.timestamps
     end

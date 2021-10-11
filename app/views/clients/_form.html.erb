@@ -1,42 +1,50 @@
 <%= form_with model: @client do |form| %>
   <div class="field">
-  <%= form.label :client_code %>
-  <br/>
-    <%= form.text_field :client_code ,:required => true,class: "form-control-xs" %>
+    <%= form.label :name %>
+    <br />
+    <%= form.text_field :name ,:required => true,class: "form-control-xs" %>
   </div>
-  <br/>
+  <br />
   <div class="field">
-  <%= form.label :password %>
-  <br/>
-    <%= form.text_field :password,:required => true ,class: "form-control-xs" %>
+    <%= form.label :company_name %>
+    <br />
+    <%= form.text_field :company_name ,class: "form-control-xs" %>
   </div>
-  <br/>
+  <br />
   <div class="field">
-  <%= form.label :email %>
-  <br/>
-    <%= form.text_field :email,:required => true ,class: "form-control-xs" %>
+    <%= form.label :username %>
+    <br />
+    <%= form.text_field :username,:required => true ,class: "form-control-xs" %>
   </div>
-  <br/>
+  <br />
   <div class="field">
-  <%= form.label :api_url %>
-  <br/>
-    <%= form.text_field :api_url,:required => true ,class: "form-control-xs"%>
+    <%= form.label :password %>
+    <br />
+    <%= form.text_field :password,:required => true ,class: "form-control-xs"%>
   </div>
-  <br/>
+  <br />
   <div class="field">
-  <%= form.label :api_method %>
-  <br/>
-    <%= form.select(:api_method, Client.api_methods.collect {|p| [ p.first, p.second ] }, { include_blank: false, prompt: 'Select Method' })%>
+    <%= form.label :token %>
+    <br />
+    <%= form.text_field :token ,class: "form-control-xs" %>
   </div>
-  <br/>
-    <div class="field">
-  <%= form.label :token %>
-  <br/>
-    <%= form.text_field :token,:required => true ,class: "form-control-xs" %>
+  <label><strong>Login API Data</strong></label>
+  <%= form.fields_for :login_api do |ff| %>
+  <div>
+    <%= ff.label :api_method %>
+    <br />
+    <%= ff.collection_select :api_method, Api.api_methods, :second, :first, include_blank: true %>
   </div>
-  <br/>
+  <br />
+  <div>
+    <%= ff.label :api_url %>
+    <br />
+    <%= ff.text_field :api_url %>
+  </div>
+  <% end %>
+  <br />
   <div class="actions">
     <%= form.submit class:'btn btn-info' %>
   </div>
-  <br/>
+  <br />
 <% end %>
