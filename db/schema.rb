@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_095502) do
+ActiveRecord::Schema.define(version: 2021_10_14_150620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -37,6 +37,22 @@ ActiveRecord::Schema.define(version: 2021_10_05_095502) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "invoice_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.uuid "vendor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vendor_id"], name: "index_invoice_groups_on_vendor_id"
+  end
+
+  create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.json "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "invoice_group_id"
+    t.index ["invoice_group_id"], name: "index_invoices_on_invoice_group_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -54,8 +70,10 @@ ActiveRecord::Schema.define(version: 2021_10_05_095502) do
     t.uuid "client_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["client_id"], name: "index_vendors_on_client_id"
   end
 
+  add_foreign_key "invoice_groups", "vendors"
   add_foreign_key "vendors", "clients"
 end

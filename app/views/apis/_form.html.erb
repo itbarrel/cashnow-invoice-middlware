@@ -1,0 +1,16 @@
+<%= form_for( [@client, @api] ) do |form| %>
+    <div class="field">
+        <%= form.label :api_method %>
+        <br />
+        <%= form.collection_select :api_method, Api.api_methods, :first, :first, include_blank: true ,class: "form-control-xs" %>
+    </div>
+    <div class="field">
+        <%= form.label :api_url %>
+        <br />
+        <%= form.text_field :api_url ,:required => true,class: "form-control-xs" %>
+    </div>
+    <br/>
+    <div class="actions">
+        <%= form.submit class:'btn btn-info' %>
+    </div>
+<% end %>

@@ -1,6 +1,6 @@
 class VendorsController < ApplicationController
   before_action :find_client
-  before_action :find_vendor, only: %i[ show edit update destroy ]
+  before_action :find_vendor, only: %i[ show edit update destroy fetch_data ]
   
   def index
     @vendors = @client.vendors
@@ -29,18 +29,28 @@ class VendorsController < ApplicationController
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
-                format.html { redirect_to client_vendors_path, notice: "vendor was successfully updated." }
-                format.json { render :show, status: :ok, location: @vendor }
+        format.html { redirect_to client_vendors_path, notice: "vendor was successfully updated." }
+        format.json { render :show, status: :ok, location: @vendor }
       else
-                format.html { render :edit, status: :unprocessable_entity }
-                format.json { render json: @vendor.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @vendor.errors, status: :unprocessable_entity }
         end
       end 
   end
 
   def destroy
   end
+
+  def fetch_data
+    #if no token, reject
+    @client.apis.each do |api|
+      VendorApiProxyWorker.perform_async(@client.id, api.id, @vendor.id)
+      # message says your request is being processed
+    end
+  end
+  
   private
+
   def find_vendor
     @vendor = @client.vendors.find(params[:id])
   end
@@ -50,7 +60,6 @@ class VendorsController < ApplicationController
   end
 
   def vendor_params
-    params.require(:vendor).permit(:vendor_code)
+    params.require(:vendor).permit(:vendor_code , :name )
   end
-
 end

@@ -1,0 +1,7 @@
+
+<%= turbo_stream_from "invoice_groups" %>
+<%= turbo_stream_from "invoices" %>
+
+<%= turbo_frame_tag "invoice_groups" do %>
+  <%= render @invoice_groups %>
+<% end %>

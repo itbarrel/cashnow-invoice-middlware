@@ -2,8 +2,9 @@ class Api < ApplicationRecord
     enum api_type: [:authenticate, :fetch_data]
     enum api_method: [:get_method, :post_method]
     
-    belongs_to :client
-    validates_presence_of :api_type, :api_method ,:api_url
+    belongs_to :client, optional: true
+
+    validates_presence_of :api_type, :api_method, :api_url
     
     def display_method
         case api_method

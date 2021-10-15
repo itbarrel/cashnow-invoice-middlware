@@ -1,0 +1,25 @@
+<%= turbo_frame_tag dom_id(invoice_group) do %>
+    <div class="accordion-invoice accordion" id="accordionExample_<%= invoice_group.id %>">
+        <div class="invoice-accordion-item accordion-item">
+            <h2 class="accordion-header" id="headingOne_<%= invoice_group.id %>">
+                <button class="invoice-accordion-button accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne_<%= invoice_group.id %>"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    <%= invoice_group.title %>
+                </button>
+            </h2>
+            <div id="collapseOne_<%= invoice_group.id %>" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample_<%= invoice_group.id %>">
+                <div class="invoice-accordion-body accordion-body">
+                    <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: "fa fa-download"%>
+                    <%= link_to '', invoice_group_path(invoice_group),method: :delete ,class: "fa fa-trash"%>
+
+                    <%= turbo_frame_tag "invoices" do %>
+                        <div class = "row">
+                            <%= render invoice_group.invoices %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

@@ -1,8 +1,8 @@
 class ClientsController < ApplicationController
-    before_action :find_client,only: %i[ show edit update destroy ]
+    before_action :find_client, only: %i[ show edit update destroy fetch_token ]
 
     def index
-        @clients=Client.all
+        @clients = Client.all
     end
 
     def show
@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
     end
 
     def create
-        @client = Client.new(client_params)   
+        @client = Client.new(client_params)
         respond_to do |format|   
             if @client.save   
                 format.html { redirect_to clients_url, notice: 'Client was successfully created.' }   
@@ -43,16 +43,21 @@ class ClientsController < ApplicationController
     
 
     def destroy
-        
-         respond_to do |format|
-            if @client.destroy
-                format.html { redirect_to @client, notice: "client was successfully delete." }
-                format.json { render :index, status: :delete, location: @client }
-            else
-                format.html { render :edit, status: :unprocessable_entity }
-                format.json { render json: @client.errors, status: :unprocessable_entity }
-            end
-        end
+        @client.destroy
+        #  respond_to do |format|
+        #     if 
+        #         format.html { redirect_to @client, notice: "client was successfully delete." }
+        #         format.json { render :index, status: :delete, location: @client }
+        #     else
+        #         format.html { render :edit, status: :unprocessable_entity }
+        #         format.json { render json: @client.errors, status: :unprocessable_entity }
+        #     end
+        # end
+    end
+
+    def fetch_token
+        ClientApiProxyWorker.perform_async(@client.id)
+        # message says your request is being processed
     end
 
     private
@@ -61,18 +66,12 @@ class ClientsController < ApplicationController
         @client = Client.find(params[:id])
     end
 
-    # def find_api
-    #     @api = @client.api.find(params[:id])
-    # end
-
     def client_params
-        par = params.require(:client).permit(:name , :company_name, :username, :password, :token,
-            login_api_attributes: [ :id, :api_type, :api_method, :api_url ]
+        params.require(:client).permit(:name , :company_name, :username, :password, :token,
+            login_api_attributes: [ :id, :api_type, :api_method, :api_url, :client_id ]
         )
-        par[:login_api_attributes][:api_type] = par[:login_api_attributes][:api_type].to_i
-        par[:login_api_attributes][:api_method] = par[:login_api_attributes][:api_method].to_i
-        par
+        # par[:login_api_attributes][:api_type] = par[:login_api_attributes][:api_type].to_i
+        # par[:login_api_attributes][:api_method] = par[:login_api_attributes][:api_method].to_i
+        # par
     end
-
-
 end

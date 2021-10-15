@@ -1,46 +1,7 @@
 <h1>Clients</h1>
 <%= link_to "Create New Client" , new_client_path , class: "btn btn-info" %>
-    <% @clients.each_with_index do |client, index| %>
-        <div class="accordion" id="accordionExample_<%= index %>" >
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne_<%= index %>">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne_<%= index %>" aria-expanded="true"
-                        aria-controls="collapseOne_<%= index %>">
-                        <%= client.name %> (<%= client.company_name %>)
-                    </button>
-                </h2>
-                <div id="collapseOne_<%= index %>" class="accordion-collapse collapse show"
-                    aria-labelledby="headingOne_<%= index %>" data-bs-parent="#accordionExample_<%= index %>">
-                    <div class="accordion-body">
-                        <ul>
-                            <li>
-                                <strong>UserName: </strong> <%= client.username %>
-                                <strong>Password: </strong> <%= client.password %>
-                                <% if client.token.present? %>
-                                    <strong>Token</strong> <%= client.token %>
-                                <% end %>
-                                <%= link_to '', client_path(client),  method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-                                <%= link_to '', edit_client_path(client), class: "action-icons fa fa-edit"%>
-                                <%= link_to '', client_vendors_path(client), class: "action-icons fa fa-users"%>
-                            </li>
-                            <% if client.login_api.present? %>
-                            <li>
-                                <h5>Login API</h5>
-                                <%= render partial: "api", locals: { api_object: client.login_api } %>
-                            </li>
-                            <% end %>
-                            <% if client.apis.present? %>
-                            <li>
-                                <h5>Data Fatch API</h5>
-                                <% client.apis.each_with_index do |api, index| %>
-                                    <%= render partial: "api", locals: { api_object: api } %>
-                                <% end %>
-                            </li>
-                            <% end %>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <%end%>
+
+<%= turbo_stream_from "clients" %>
+<%= turbo_frame_tag "clients" do %>
+  <%= render @clients %>
+<% end %>

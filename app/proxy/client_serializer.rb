@@ -22,15 +22,15 @@ class ClientSerializer
     }
   end
 
-  private
+  def fetch_data_payload(vendor)
+    return nil if @client.nil?
+    return nil if @client.token.nil?
+    return nil if vendor.nil?
 
-  def order_attrs
-    {
-      "TRANSACTION_ID" => transaction_id,
-      "ORDERTOTALCOLOUR" => order_total,
-      "Terminal_id" => @order.order_terminal_id, 
-      "Customer_id" => @order.customer_id, 
-      "DISCCUST_DISCREASON" => nil
+   return {
+      "client_id" => @client.username,
+      "token" => @client.token,
+      "vendor_code" => vendor.vendor_code,
     }
   end
 end
