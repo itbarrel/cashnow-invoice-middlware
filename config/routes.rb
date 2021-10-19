@@ -18,6 +18,5 @@ Rails.application.routes.draw do
   resources :vendors, only: [] do
     resources :invoices, only: [:index, :destroy]
   end
-  resources :invoice_groups, only: [:show, :destroy] 
-  # devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout"}
+  resources :invoice_groups, only: [:show, :des] 
 end

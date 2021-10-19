@@ -1,44 +1,104 @@
-<section class="vh-100">
-  <div class="container-fluid h-custom">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-          <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-          <button type="button" class="btn btn-primary btn-floating mx-1">
-            <i class="fa fa-facebook-f"></i>
-          </button>
-          <button type="button" class="btn btn-primary btn-floating mx-1">
-            <i class="fa fa-twitter"></i>
-          </button>
-          <button type="button" class="btn btn-primary btn-floating mx-1">
-            <i class="fa fa-linkedin"></i>
-          </button>
-        </div>
-        <div class="divider d-flex align-items-center my-4"></div>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-outline mb-4">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form-control form-control-lg",placeholder:"Enter a valid email address" %>
-        </div>
-        <!-- Password input -->
-        <div class="form-outline mb-3">
-          <%= f.password_field :password, autocomplete: "current-password",class:"form-control form-control-lg",placeholder:"Enter password" %>
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <!-- Checkbox -->
-          <% if devise_mapping.rememberable? %>
-          <div class="form-check mb-0">
-            <%= f.check_box :remember_me,class:"form-check-input me-2" %>
-            <%= f.label :remember_me,class:"form-check-label" %>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <main class="main" id="top">
+      <div class="container-fluid">
+        <div class="row min-vh-100 flex-center no-gutters">
+          <div class="col-lg-8 col-xxl-5 py-3"><img class="bg-auth-circle-shape"
+              src="../../assets/img/illustrations/bg-shape.png" alt="" width="250"><img class="bg-auth-circle-shape-2"
+              src="../../assets/img/illustrations/shape-1.png" alt="" width="150">
+            <div class="card overflow-hidden z-index-1">
+              <div class="card-body p-0">
+                <div class="row no-gutters h-100">
+                  <div class="col-md-5 text-white text-center bg-card-gradient">
+                    <div class="position-relative p-4 pt-md-5 pb-md-7">
+                      <div class="bg-holder bg-auth-card-shape"
+                        style="background-image:url(../../assets/img/illustrations/half-circle.png);">
+                      </div>
+                      <!--/.bg-holder-->
+                      <div class="z-index-1 position-relative"><a
+                          class="text-white mb-4 text-sans-serif font-weight-extra-bold fs-4 d-inline-block"
+                          href="../../index.html">falcon</a>
+                        <p class="text-white opacity-75">With the power of Falcon, you can now focus only on
+                          functionaries for your digital products, while leaving the UI design on us!</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-7 d-flex flex-center">
+                    <div class="p-4 p-md-5 flex-grow-1">
+                      <h3>Account Login</h3>
+                      <form>
+                        <div class="form-group">
+                          <label for="card-email">Email address</label>
+                          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form-control form-control-lg",placeholder:"Enter a valid email address" %>
+                        </div>
+                        <div class="form-group">
+                          <div class="d-flex justify-content-between">
+                            <label for="card-password">Password</label><a class="fs--1"
+                              href="../../authentication/card/forgot-password.html">Forgot Password?</a>
+                          </div>
+                          <%= f.password_field :password, autocomplete: "current-password",class:"form-control form-control-lg",placeholder:"Enter password" %>
+                        </div>
+                        <!-- Checkbox -->
+                        <div class="custom-control custom-checkbox">
+                          <% if devise_mapping.rememberable? %>
+                          <div class="form-check mb-0">
+                            <%= f.check_box :remember_me,class:"custom-control-input" %>
+                            <%= f.label :remember_me,class:"custom-control-label" %>
+                          </div>
+                          <%end%>
+                          <div class="form-group">
+                            <%= f.submit "Log in",class:"btn btn-primary btn-block mt-3" %>
+                          </div>
+                      </form>
+                      <div class="w-100 position-relative mt-4">
+                        <hr class="text-300" />
+                        <div
+                          class="position-absolute absolute-centered t-0 px-3 bg-white text-sans-serif fs--1 text-500 text-nowrap">
+                          or log in with</div>
+                      </div>
+                      <div class="form-group mb-0">
+                        <div class="row no-gutters">
+                          <div class="col-sm-6 pr-sm-1"><a class="btn btn-outline-google-plus btn-sm btn-block mt-2"
+                              href="#"><span class="fab fa-google-plus-g mr-2" data-fa-transform="grow-8"></span>
+                              google</a></div>
+                          <div class="col-sm-6 pl-sm-1"><a class="btn btn-outline-facebook btn-sm btn-block mt-2"
+                              href="#"><span class="fab fa-facebook-square mr-2" data-fa-transform="grow-8"></span>
+                              facebook</a></div>
+                        </div>
+                      </div>
+                      <%= render "devise/shared/links" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <%end%>
-          <a href="#!" class="text-body">Forgot password?</a>
         </div>
-        <div class="text-center text-lg-start mt-4 pt-2">
-          <%= f.submit "Log in",class:"btn btn-primary btn-lg",style:"padding-left: 2.5rem; padding-right: 2.5rem;" %>
-        </div>
-        <%end%>
-        <%= render "devise/shared/links" %>
       </div>
-    </div>
-  </div>
-</section>
+    </main>
+<%end%>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/popper.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/lib/@fortawesome/all.min.js"></script>
+    <script src="../../assets/lib/stickyfilljs/stickyfill.min.js"></script>
+    <script src="../../assets/lib/sticky-kit/sticky-kit.min.js"></script>
+    <script src="../../assets/lib/is_js/is.min.js"></script>
+    <script src="../../assets/lib/lodash/lodash.min.js"></script>
+    <script src="../../assets/lib/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:100,200,300,400,500,600,700,800,900&amp;display=swap"
+      rel="stylesheet">
+    <script src="../../assets/js/theme.js"></script>

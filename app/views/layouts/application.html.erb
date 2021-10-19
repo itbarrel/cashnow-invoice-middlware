@@ -10,12 +10,14 @@
   </head>
 
   <body>
-    <%= render 'home/header' %>
     <%= render 'home/sidebar' %>
+      <%= yield %>
+    <%# <%= render 'home/dashboard-alt' %>
+    <%# <%= render 'home/feed' %>
+    <%# <%= render 'home/landing' %> 
     <div class="master-page" id="main"  onmouseout="mouseOut()">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <%= yield %>
     </div>
   </body>
   <script>
