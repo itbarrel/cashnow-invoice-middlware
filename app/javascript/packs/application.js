@@ -8,13 +8,15 @@
  require.context('../img' , true)
 
 //= require popper
-//= require bootstrap-sprockets
-//= require bootstrap
+
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
-import "bootstrap"
 import "channels"
+// import "jquery"
+
 import "@hotwired/turbo-rails"
+
+const images = require.context('../images', true)
 
 Rails.start()
 ActiveStorage.start()

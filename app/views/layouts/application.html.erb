@@ -1,34 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cashnow</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
-  </head>
+
+<html lang="en-US" dir="ltr">
+
+  <%= render 'layouts/head' %>
 
   <body>
-    <%= render 'home/sidebar' %>
-      <%= yield %>
-    <%# <%= render 'home/dashboard-alt' %>
-    <%# <%= render 'home/feed' %>
-    <%# <%= render 'home/landing' %> 
-    <div class="master-page" id="main"  onmouseout="mouseOut()">
-      <p class="notice"><%= notice %></p>
+    <%#= render 'home/header' %>
+    <main class="main" id="top">
+      <div class="container" data-layout="container">
+        <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-    </div>
+        <%= render 'layouts/sidebar' %>
+        <%= yield %>
+      </div>
+    </main>
   </body>
   <script>
-  function mouseOver() {
-    document.getElementById("demo").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "200px"
-  }
+  // function mouseOver() {
+  //   document.getElementById("demo").style.width = "250px";
+  //   document.getElementById("main").style.marginLeft = "200px"
+  // }
 
-  function mouseOut() {
-    document.getElementById("demo").style.width = "60px";
-    document.getElementById("main").style.marginLeft = "10px"
-  }
+  // function mouseOut() {
+  //   document.getElementById("demo").style.width = "60px";
+  //   document.getElementById("main").style.marginLeft = "10px"
+  // }
   </script>
 </html>
