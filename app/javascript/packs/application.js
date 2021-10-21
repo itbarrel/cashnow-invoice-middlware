@@ -17,10 +17,12 @@ import "./css/fontawesome/css/all.min.css"
 import "./css/sb-admin-2.min.css"
 
 import "./bootstrap-bundle/bootstrap.bundle.min"
-import "./sb-admin-2.min"
-
 import "./jquery-easing/jquery.easing.min"
 import "./sb-admin-2.min"
+import "./chart.js/Chart.min"
+// import "./chart.js/Chart.bundle.min"
+// import "./chart.js/demo/chart-area-demo"
+// import "./chart.js/demo/chart-pie-demo"
 
 Rails.start()
 ActiveStorage.start()

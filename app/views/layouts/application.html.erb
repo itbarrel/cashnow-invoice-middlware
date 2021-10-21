@@ -3,18 +3,24 @@
   <%= render 'layouts/head' %>
 
   <body id="page-top">
-    <div id="wrapper">
-      <%= render 'layouts/sidebar' %>
-      <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-          <%= render 'layouts/navbar' %>
+    <% if current_user.present? %>
+      <div id="wrapper">
+        <%= render 'layouts/sidebar' %>
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <%= render 'layouts/navbar' %>
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
-          <%= yield %>
+            <%= yield %>
+          </div>
+          <%= render 'layouts/footer' %>
         </div>
       </div>
-    </div>
-
+    <% else %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    <% end %>
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>

@@ -1,45 +1,39 @@
 <%= turbo_frame_tag dom_id(client) do %>
-    <div class="accordion" id="accordionExample_<%= client.id %>" >
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne_<%= client.id %>">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne_<%= client.id %>" aria-expanded="true"
-                    aria-controls="collapseOne_<%= client.id %>">
-                    <%= client.name %> (<%= client.company_name %>)
-                </button>
-            </h2>
-            <div id="collapseOne_<%= client.id %>" class="accordion-collapse collapse show"
-                aria-labelledby="headingOne_<%= client.id %>" data-bs-parent="#accordionExample_<%= client.id %>">
-                <div class="accordion-body">
-                    <ul>
-                        <li>
-                            <strong>UserName: </strong> <%= client.username %>
-                            <strong>Password: </strong> <%= client.password %>
-                            <% if client.token.present? %>
-                                <strong>Token</strong> <%= client.token %>
-                            <% end %>
-                            <%= link_to '', client_path(client), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-                            <%= link_to '', edit_client_path(client), data: { turbo: false }, class: "action-icons fa fa-edit"%>
-                            <%= link_to '', client_vendors_path(client), data: { turbo: false }, class: "action-icons fa fa-users"%>
-                            <%= link_to '', new_client_api_path(client), data: { turbo: false }, class: "action-icons fa  fa-plus-square-o"%>
-                            <%= link_to '', fetch_token_client_path(client), method: :post, class: "action-icons fa fa-plane"%>
-                        </li>
-                        <% if client.login_api.present? %>
-                        <li>
-                            <h5>Login API</h5>
-                            <%= render partial: "apis/api", locals: { client: client, api: client.login_api } %>
-                        </li>
+    <div class="card shadow mb-4">
+        <a href="#collapse_<%= client.id %>" class="d-block card-header py-3" data-toggle="collapse"
+            role="button" aria-expanded="true" aria-controls="collapse_<%= client.id %>">
+            <h6 class="m-0 font-weight-bold text-primary"><%= client.name %> (<%= client.company_name %>)</h6>
+        </a>
+        <div class="collapse show" id="collapse_<%= client.id %>">
+            <div class="card-body">
+                <ul>
+                    <li>
+                        <strong>UserName: </strong> <%= client.username %>
+                        <strong>Password: </strong> <%= client.password %>
+                        <% if client.token.present? %>
+                            <strong>Token</strong> <%= client.token %>
                         <% end %>
-                        <% if client.apis.present? %>
-                        <li>
-                            <h5>Data Fatch API</h5>
-                            <% client.apis.each_with_index do |api, index| %>
-                                <%= render partial: "apis/api", locals: { client: client, api: api } %>
-                            <% end %>
-                        </li>
+                        <%= link_to '', client_path(client), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
+                        <%= link_to '', edit_client_path(client), data: { turbo: false }, class: "action-icons fa fa-edit"%>
+                        <%= link_to '', client_vendors_path(client), data: { turbo: false }, class: "action-icons fa fa-users"%>
+                        <%= link_to '', new_client_api_path(client), data: { turbo: false }, class: "action-icons fa  fa-plus-square-o"%>
+                        <%= link_to '', fetch_token_client_path(client), method: :post, class: "action-icons fa fa-plane"%>
+                    </li>
+                    <% if client.login_api.present? %>
+                    <li>
+                        <h5>Login API</h5>
+                        <%= render partial: "apis/api", locals: { client: client, api: client.login_api } %>
+                    </li>
+                    <% end %>
+                    <% if client.apis.present? %>
+                    <li>
+                        <h5>Data Fatch API</h5>
+                        <% client.apis.each_with_index do |api, index| %>
+                            <%= render partial: "apis/api", locals: { client: client, api: api } %>
                         <% end %>
-                    </ul>
-                </div>
+                    </li>
+                    <% end %>
+                </ul>
             </div>
         </div>
     </div>
