@@ -1,6 +1,12 @@
-<strong><%= api.display_method %></strong>  
-<%= api.api_url %>
-<% if api.fetch_data? %>
-    <%= link_to '', client_api_path(client, api), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-<% end %>
-<%= link_to '', edit_client_api_path(client, api), data: { turbo: false }, class: "action-icons fa fa-edit"%>
+<div class="row">
+    <div class="col-md-10">
+        <strong><%= api.display_method %></strong>  
+        <%= api.api_url %>
+    </div>
+    <div class="col-md-2">
+        <%= link_to '', edit_client_api_path(client, api), data: { turbo: false }, class: "action-icons fa fa-edit"%>
+        <% if api.fetch_data? %>
+            <%= link_to '', client_api_path(client, api), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
+        <% end %>
+    </div>
+</div>
