@@ -12,6 +12,7 @@
                         <strong>Password: </strong> <%= client.password %>
                         <% if client.token.present? %>
                             <strong>Token</strong> <%= client.token %>
+                            <br/>
                         <% end %>
                         <%= link_to '', client_path(client), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
                         <%= link_to '', edit_client_path(client), data: { turbo: false }, class: "action-icons fa fa-edit"%>
