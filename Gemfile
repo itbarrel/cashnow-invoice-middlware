@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.8'
 gem 'hotwire-rails', '~> 0.1.3'
 gem 'redis', '~> 4.0'
+gem 'foreman'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

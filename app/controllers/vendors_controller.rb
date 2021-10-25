@@ -46,8 +46,10 @@ class VendorsController < ApplicationController
     #if no token, reject
     @client.apis.each do |api|
       VendorApiProxyWorker.perform_async(@client.id, api.id, @vendor.id)
+      flash[:notice] = "Data Fetch api has started."
       # message says your request is being processed
     end
+    redirect_to client_vendors_path(@client)
   end
   
   private
