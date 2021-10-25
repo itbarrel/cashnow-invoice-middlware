@@ -5,35 +5,21 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">CashNow <sup>Middleware</sup></div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/clients">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Clients</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item" id="myCheck" >
-            <i class="fas fa-fw fa-table"  ></i>
-            <span>Vendors</span>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Invoices</span></a>
-    </li>
+    <% @side_menu_items.each do |menu_item| %>
+        <li class="nav-item <%= request.original_fullpath.include?(menu_item[:key] || '')? 'active' : '' %>">
+            <a class="nav-link" href="<%= menu_item[:link] %>">
+                <i class="fas fa-fw <%= menu_item[:iconClass] %>"></i>
+                <span><%= menu_item[:text] %></span>
+            </a>
+        </li>
+    <% end %>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -46,7 +32,7 @@
 </ul>
 <script>
     if (window.location.href.indexOf("vendors") > -1) {
- document.getElementById("myCheck").style.color = "white"
- console.log("hello");
-}
+        document.getElementById("myCheck").style.color = "white"
+        console.log("hello");
+    }
 </script>

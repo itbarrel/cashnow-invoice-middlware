@@ -21,12 +21,13 @@
                             <td><%=vendor.vendor_code %></td>
                             <td><%=vendor.name %></td>
                             <td>
-                                <% if @client.apis.present? %>
-                                <%= link_to '', fetch_data_client_vendor_path(@client, vendor), method: :post, class: "action-icons fa fa-plane"%>
+                                <% if @client.apis.present?%>
+                                <%= link_to '', fetch_data_client_vendor_path(@client, vendor), method: :post, class: "action-icons fa fa-paper-plane"%>
                                 <% end %>
+                                <%= link_to '', vendor_invoices_path(vendor), class: "action-icons fa fa-newspaper"%>
+                                |
                                 <%= link_to '', edit_client_vendor_url(@client, vendor), class: "action-icons fa fa-edit"%>
                                 <%= link_to '', client_vendor_path(@client, vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-                                <%= link_to '', vendor_invoices_path(vendor), class: "action-icons fa fa-edit"%>
                             </td>
                         <% end %>
                     </tr>

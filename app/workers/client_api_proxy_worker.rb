@@ -10,7 +10,6 @@ class ClientApiProxyWorker
     clientProxyObj = ClientProxy.new (client_id)
     
     response = clientProxyObj.authenticate
-
     response = JSON.parse(response[:message].to_json)
     error = response['error']
     # if success in response 

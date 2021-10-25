@@ -13,9 +13,9 @@ import "jquery"
 import "channels"
 import "@hotwired/turbo-rails"
 
-import "./css/fontawesome/css/all.min.css"
-import "./css/sb-admin-2.min.css"
-// import "./css/test.css"
+import "./stylesheets/fontawesome/css/all.min.css"
+import "./stylesheets/sb-admin-2.min.css"
+import "./stylesheets/application"
 
 import "./bootstrap-bundle/bootstrap.bundle.min"
 import "./jquery-easing/jquery.easing.min"
@@ -25,5 +25,9 @@ import "./chart.js/Chart.min"
 // import "./chart.js/demo/chart-area-demo"
 // import "./chart.js/demo/chart-pie-demo"
 
+import "controllers"
+
+global.toastr = require("toastr")
 Rails.start()
 ActiveStorage.start()
+
