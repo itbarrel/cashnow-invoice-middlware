@@ -7,11 +7,9 @@
     <%= link_to "Create New Client" , new_client_path , class: "btn btn-primary float-right" %>
   </div>
 
-  <div class="row">
-    <div class="col-lg-6">
-      <%= turbo_frame_tag "clients" do %>
+    <%= turbo_frame_tag "clients" do %>
+      <div class="row">
         <%= render @clients %>
-      <% end %>
-    </div>
-  </div>
+      </div>
+    <% end %>
 </div>

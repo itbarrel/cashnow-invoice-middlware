@@ -29,7 +29,7 @@ class BaseProxy
         return response
       rescue => err
         puts err
-        raise ProxyException.new("Proxy is Down...#{err}", 500) 
+        raise StandardError.new("Proxy is Down...#{err}") 
       end
     end
 
