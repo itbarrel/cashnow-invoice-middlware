@@ -57,6 +57,8 @@ class ClientsController < ApplicationController
 
     def fetch_token
         ClientApiProxyWorker.perform_async(@client.id)
+        flash[:notice] = "Api authentication started."
+        redirect_to clients_path
         # message says your request is being processed
     end
 
