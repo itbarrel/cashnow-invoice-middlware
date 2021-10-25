@@ -20,10 +20,22 @@ class VendorApiProxyWorker
 
       response = JSON.parse(response[:message])
       error = response['error']
-      
+      data = response['data']
+
       # if success in response 
       if error == false
-        data = response['data']
+        if data.kind_of?(Array)
+          data.each do |elem|
+            formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y %I:%M %p')
+            ig = InvoiceGroup.where(title: formated_time, vendor: vendor).first_or_create
+            Invoice.create(data: elem, invoice_group: ig)
+          end
+        else
+          formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y %I:%M %p')
+          ig = InvoiceGroup.where(title: formated_time, vendor: vendor).first_or_create
+          Invoice.create(data: data, invoice_group: ig)
+        end
+      else
         if data.kind_of?(Array)
           data.each do |elem|
             formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y %I:%M %p')
@@ -31,10 +43,6 @@ class VendorApiProxyWorker
             Invoice.create(data: elem, invoice_group: ig)
           end
         end
-      else
-        formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y %I:%M %p')
-        ig = InvoiceGroup.where(title: formated_time, vendor: vendor).first_or_create
-        Invoice.create(data: data, invoice_group: ig)
       end
     end
   end
