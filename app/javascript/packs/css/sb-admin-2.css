@@ -11279,3 +11279,9 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+#myCheck {
+    display: initial;
+    font-size: .85rem;
+    margin: 18px;
+    color: rgba(255,255,255,.8);
+}

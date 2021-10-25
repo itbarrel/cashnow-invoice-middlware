@@ -1,28 +1,39 @@
-<h1>vendors</h1>
-    <%= link_to "Create New Vendor" , new_client_vendor_path , class: "btn btn-info" %> | 
-    <%= link_to "Back" , clients_path, class: "btn btn-info"%>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Vendor Code</th>
-            <th>Vendor Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <% @vendors.each do |vendor| %>
-            <td><%=vendor.vendor_code %></td>
-            <td><%=vendor.name %></td>
-            <td>
-                <% if @client.apis.present?%>
-                <%= link_to '', fetch_data_client_vendor_path(@client, vendor), method: :post, class: "action-icons fa fa-plane"%>
-                <% end %>
-                <%= link_to '', edit_client_vendor_url(@client, vendor), class: "action-icons fa fa-edit"%>
-                <%= link_to '', client_vendor_path(@client, vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-                <%= link_to '', vendor_invoices_path(vendor), class: "action-icons fa fa-edit"%>
-            </td>
-        </tr>
-          <% end %>
-    </tbody>
-</table>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Vendors</h6>
+        <br />
+        <%= link_to "Create New Vendor" , new_client_vendor_path , class: "btn btn-primary" %> |
+        <%= link_to "Back" , clients_path, class: "btn btn-primary"%>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Vendor Code</th>
+                        <th>Vendor Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% @vendors.each do |vendor| %>
+                                <td><%=vendor.vendor_code %></td>
+                                <td><%=vendor.name %></td>
+                                <td>
+                                    <% if @client.apis.present?%>
+                                    <%= link_to '', fetch_data_client_vendor_path(@client, vendor), method: :post, class: "action-icons fa fa-plane"%>
+                                    <% end %>
+                                    <%= link_to '', edit_client_vendor_url(@client, vendor), class: "action-icons fa fa-edit"%>
+                                    <%= link_to '', client_vendor_path(@client, vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
+                                    <%= link_to '', vendor_invoices_path(vendor), class: "action-icons fa fa-edit"%>
+                                </td>
+                        <% end %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -39,6 +39,7 @@ class VendorsController < ApplicationController
   end
 
   def destroy
+   @vendor.destroy
   end
 
   def fetch_data

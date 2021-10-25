@@ -15,6 +15,7 @@ import "@hotwired/turbo-rails"
 
 import "./css/fontawesome/css/all.min.css"
 import "./css/sb-admin-2.min.css"
+// import "./css/test.css"
 
 import "./bootstrap-bundle/bootstrap.bundle.min"
 import "./jquery-easing/jquery.easing.min"
