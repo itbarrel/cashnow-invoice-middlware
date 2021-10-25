@@ -16,8 +16,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <% @vendors.each do |vendor| %>
+                    <% @vendors.each do |vendor| %>
+                        <tr>
                             <td><%=vendor.vendor_code %></td>
                             <td><%=vendor.name %></td>
                             <td>
@@ -29,8 +29,8 @@
                                 <%= link_to '', edit_client_vendor_url(@client, vendor), class: "action-icons fa fa-edit"%>
                                 <%= link_to '', client_vendor_path(@client, vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
                             </td>
-                        <% end %>
-                    </tr>
+                        </tr>
+                    <% end %>
                 </tbody>
             </table>
         </div>

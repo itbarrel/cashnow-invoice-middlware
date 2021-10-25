@@ -40,6 +40,15 @@ class VendorsController < ApplicationController
 
   def destroy
    @vendor.destroy
+            respond_to do |format|
+            if 
+                format.html { redirect_to client_vendors_path, notice: "vendor was successfully delete." }
+                format.json { render :index, status: :delete, location: @vendor }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json { render json: @vendor.errors, status: :unprocessable_entity }
+            end
+        end
   end
 
   def fetch_data

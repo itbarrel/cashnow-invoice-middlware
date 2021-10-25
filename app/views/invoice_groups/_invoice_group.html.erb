@@ -8,8 +8,8 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="collapse_<%= invoice_group.id %>">
             <div class="card-body">
-                <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: "fa fa-download"%>
-                <%= link_to '', invoice_group_path(invoice_group),method: :delete ,class: "fa fa-trash"%>
+                <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: "fa fa-download float-right"%>
+                <%= link_to '', invoice_group_path(invoice_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash float-right"%>
 
                 <%= turbo_frame_tag "invoices" do %>
                 <div class="row">
