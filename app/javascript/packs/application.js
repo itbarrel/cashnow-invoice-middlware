@@ -6,6 +6,9 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap
+//= require jquery
+//= require moment
+//= require daterangepicker
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "bootstrap"
@@ -15,7 +18,7 @@ import "@hotwired/turbo-rails"
 
 import "./stylesheets/fontawesome/css/all.min.css"
 import "./stylesheets/sb-admin-2.min.css"
-import "./stylesheets/application"
+import "./stylesheets/application.scss"
 
 import "./bootstrap-bundle/bootstrap.bundle.min"
 import "./jquery-easing/jquery.easing.min"

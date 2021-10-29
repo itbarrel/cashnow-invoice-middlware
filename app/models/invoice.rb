@@ -1,20 +1,13 @@
 class Invoice < ApplicationRecord
   belongs_to :invoice_group
   delegate :vendor, to: :invoice_group, allow_nil: true
-  # delegate :client, to: :vendor, allow_nil: true
 
   after_create_commit { broadcast_prepend_to 'invoices' }
   after_update_commit { broadcast_replace_to 'invoices' }
   after_destroy_commit { broadcast_remove_to 'invoices' }
+  
+  scope :having_created_at_between, ->(start_date, end_date) { where(created_at: start_date..end_date) }
 
-  # def self.to_csv
-  #   CSV.generate do |csv|
-  #     csv << column_names
-  #     all.each do |invoice|
-  #       csv << invoice.attributes.values_at(*column_names)
-  #     end
-  #   end      
-  # end
   def self.to_csv
     disply_attributes = [
       'Supplier Id',

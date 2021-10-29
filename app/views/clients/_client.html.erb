@@ -34,7 +34,7 @@
                     <% end %>
                     <% if client.apis.present? %>
                     <li>
-                        <h5>Data Fatch API</h5>
+                        <h5>Data Fetch API</h5>
                         <% client.apis.each_with_index do |api, index| %>
                             <%= render partial: "apis/api", locals: { client: client, api: api } %>
                         <% end %>
