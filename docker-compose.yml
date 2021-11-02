@@ -1,0 +1,42 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: DockerFile
+    volumes:
+      - ./:/var/www/cashnow/
+    ports:
+      - '${PORT:-3000}:3000'
+      - '3035:3035'
+      - '8080:8080'
+    # command: ./bin/webpack-dev-server
+    command: ["/bin/bash", "./start-rails-development-server.sh"]
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+      REDIS_URL: ${REDIS_URL}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      WEBPACKER_DEV_SERVER_HOST: ${WEBPACKER_DEV_SERVER_HOST}
+      WEBPACKER_DEV_SERVER_PORT: ${WEBPACKER_DEV_SERVER_PORT}
+      NODE_ENV: ${NODE_ENV}
+    # depends_on:
+    #   - 'webpacker'
+
+  # webpacker:
+  #   build: 
+  #     context: .
+  #     dockerfile: DockerFile
+  #   command: bash -c "rm -rf /var/www/cashnow/public/packs; /var/www/cashnow/bin/webpack-dev-server"
+  #   volumes:
+  #     - ./:/var/www/cashnow/
+  #   environment:
+  #     NODE_ENV: ${NODE_ENV}
+  #     WEBPACKER_DEV_SERVER_HOST: ${WEBPACKER_DEV_SERVER_HOST}
+  #     RAILS_ENV: ${RAILS_ENV}
+  #   ports:
+  #     - '3035:3035'

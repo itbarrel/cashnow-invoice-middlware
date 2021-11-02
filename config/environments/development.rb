@@ -77,7 +77,6 @@ Rails.application.configure do
 
   config.action_controller.forgery_protection_origin_check = false
 
-  Rails.application.configure do
-    config.hosts << "invoice.cashnow.pk"
-  end
+  config.hosts << "invoice.cashnow.pk"
+  config.webpacker.check_yarn_integrity = false
 end
