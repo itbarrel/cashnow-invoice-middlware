@@ -121,4 +121,5 @@ Rails.application.configure do
   config.webpacker.check_yarn_integrity = false
   config.hosts << "invoice.cashnow.pk"
   config.hosts << "localhost"
+  config.hosts << "172.17.0.1"
 end
