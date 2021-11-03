@@ -8,12 +8,14 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="collapse_<%= invoice_group.id %>">
             <div class="card-body">
-                <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: "fa fa-download float-right"%>
-                <%= link_to '', invoice_group_path(invoice_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash float-right"%>
+                <div class= "float-right">
+                    <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: " fa fa-download"%>
+                    <%= link_to '', invoice_group_path(invoice_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash"%>
+                </div>
 
                 <%= turbo_frame_tag "invoices" do %>
                 <div class="row">
-                    <%= render invoice_group.invoices %>
+                    <%= render invoice_group.filtered_invoices((params[:search][:from_date] rescue nil), (params[:search][:to_date] rescue nil)) %>
                 </div>
                 <% end %>
             </div>

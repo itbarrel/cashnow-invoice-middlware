@@ -1,15 +1,13 @@
-<div class="card shadow mb-4">
-    <%= turbo_frame_tag dom_id(invoice) do %>
-        <div class="card-body">
-            <% if invoice.data.present? && (invoice.data.kind_of?(Hash) || invoice.data.kind_of?(Object)) %>
-                <% invoice.data.keys.each do |key| %>
-                    <% if key.include?('invoice') %>
-                        <%= key %> = <%= invoice.data[key] %><br>
-                    <% end %>
+<%= turbo_frame_tag dom_id(invoice), class: "card shadow col-md-4" do %>
+    <div class="card-body">
+        <% if invoice.data.present? && (invoice.data.kind_of?(Hash) || invoice.data.kind_of?(Object)) %>
+            <% invoice.data.keys.each do |key| %>
+                <% if key.include?('invoice') %>
+                    <%= key %> = <%= invoice.data[key] %><br>
                 <% end %>
-            <% else %>
-                No Data Found
             <% end %>
-        </div>
-    <% end %>
-</div>
+        <% else %>
+            No Data Found
+        <% end %>
+    </div>
+<% end %>

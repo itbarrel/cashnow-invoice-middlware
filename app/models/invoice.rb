@@ -6,7 +6,12 @@ class Invoice < ApplicationRecord
   after_update_commit { broadcast_replace_to 'invoices' }
   after_destroy_commit { broadcast_remove_to 'invoices' }
   
-  scope :having_created_at_between, ->(start_date, end_date) { where(created_at: start_date..end_date) }
+  # scope :having_date_between, ->(start_date, end_date) { where("data->>'vendor_invoice_date')::date > ?", start_date) }
+  scope :having_date_between, lambda {|start_date, end_date|
+    list = all.where("(data->>'vendor_invoice_date')::date > ?", start_date) if start_date.present?
+    list = list.where("(data->>'vendor_invoice_date')::date < ?", end_date) if end_date.present?
+    list
+  } 
 
   def self.to_csv
     disply_attributes = [

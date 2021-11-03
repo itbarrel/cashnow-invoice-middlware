@@ -12,8 +12,6 @@ class InvoiceGroupsController < ApplicationController
      def destroy
        @ig.destroy  
      end
-     
-
 
     private
 
