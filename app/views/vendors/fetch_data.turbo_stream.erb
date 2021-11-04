@@ -1,0 +1,12 @@
+<%= turbo_stream.replace "flash_messages" do %>
+    <div id="flash_messages">
+      <% flash.each_with_object([]) do |(type, message), flash_messages| %>
+        <% type = 'success' if type == 'notice' %>
+        <% type = 'error' if type == 'alert' %>
+        <p class="alert alert-<%= type %> alert-normal-<%= type %>">
+          <button type="button" class="close">×</button>
+          <%= message %>
+        </p>
+      <% end %>
+    </div>
+<% end %>

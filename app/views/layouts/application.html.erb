@@ -9,19 +9,17 @@
         <div id="content-wrapper" class="d-flex flex-column">
           <div id="content">
             <%= render 'layouts/navbar' %>
-            <!--<p class="notice"><%#= notice %></p>-->
-            <p class="alert"><%= alert %></p>
+            <%= render 'layouts/flash_messages' %>
             <%= yield %>
-            <%= toastr_flash %>
+            <%#= toastr_flash %>
           </div>
           <%= render 'layouts/footer' %>
         </div>
       </div>
     <% else %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
-      <%= toastr_flash %>
+      <%#= toastr_flash %>
     <% end %>
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>

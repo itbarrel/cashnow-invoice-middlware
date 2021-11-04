@@ -34,31 +34,34 @@ class VendorsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @vendor.errors, status: :unprocessable_entity }
-        end
-      end 
+      end
+    end 
   end
 
   def destroy
-   @vendor.destroy
-            respond_to do |format|
-            if 
-                format.html { redirect_to client_vendors_path, notice: "vendor was successfully delete." }
-                format.json { render :index, status: :delete, location: @vendor }
-            else
-                format.html { render :edit, status: :unprocessable_entity }
-                format.json { render json: @vendor.errors, status: :unprocessable_entity }
-            end
+   
+    respond_to do |format|
+        if @vendor.destroy
+            format.html { redirect_to client_vendors_path, notice: "vendor was successfully delete." }
+            format.json { render :index, status: :delete, location: @vendor }
+        else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @vendor.errors, status: :unprocessable_entity }
         end
+    end
   end
 
   def fetch_data
     #if no token, reject
     @client.apis.each do |api|
       VendorApiProxyWorker.perform_async(@client.id, api.id, @vendor.id)
-      flash[:notice] = "Data Fetch api has started."
       # message says your request is being processed
     end
-    redirect_to client_vendors_path(@client)
+    flash[:notice] = "Data Fetch api has started."
+    # respond_to do |format|
+    #     format.json { render :index, status: :delete, location: @vendor }
+    # end
+    redirect_to request.original_fullpath
   end
   
   private
@@ -72,6 +75,6 @@ class VendorsController < ApplicationController
   end
 
   def vendor_params
-    params.require(:vendor).permit(:vendor_code , :name )
+    params.require(:vendor).permit(:vendor_code, :name)
   end
 end

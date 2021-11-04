@@ -1,6 +1,10 @@
 class InvoiceGroup < ApplicationRecord
     belongs_to :vendor
-    has_many :invoices
+    has_many :invoices , dependent: :destroy
+
+
+    InvoiceGroup.order(downloaded: :ASC)
+
 
     def filtered_invoices(from_date, to_date)
         invoices.having_date_between(from_date, to_date)
