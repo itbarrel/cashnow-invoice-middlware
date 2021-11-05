@@ -1,11 +1,8 @@
-<%= link_to "Back" , client_vendors_path(@vendor.client_id), class: "btn btn-primary "%>
-<br/>
-<br/>
 <%= render 'filter_form' %>
 <br/>
 <%= turbo_stream_from "invoice_groups" %>
 <%= turbo_stream_from "invoices" %>
 
 <%= turbo_frame_tag "invoice_groups" do %>
-  <%= render @invoice_groups %>
+  <%= render @invoice_groups.order(:downloaded) %>
 <% end %>

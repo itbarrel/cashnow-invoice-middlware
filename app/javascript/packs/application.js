@@ -34,3 +34,6 @@ global.toastr = require("toastr")
 Rails.start()
 ActiveStorage.start()
 
+$(document).on('click', '.close', function () {
+    $(this).parent().hide();
+});

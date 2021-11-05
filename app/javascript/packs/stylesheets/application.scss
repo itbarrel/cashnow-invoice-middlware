@@ -1,2 +1,10 @@
-@import 'toastr'
-
+@import 'toastr';
+.datepicker{
+    width: 170px !important;
+}
+.accordian_head_success{
+    background-color: rgb(180, 248, 180);
+}
+.margin_zero{
+    margin: 0px;
+}

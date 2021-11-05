@@ -1,21 +1,27 @@
+<%= token_tag %> 
 <%= turbo_frame_tag dom_id(invoice_group) do %>
     <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
-        <a href="#collapse_<%= invoice_group.id %>" class="d-block card-header py-3" data-toggle="collapse"
+        <a href="#collapse_<%= invoice_group.id %>" class="d-block card-header py-3 <%= (invoice_group.downloaded)? 'accordian_head_success' : '' %>" data-toggle="collapse"
             role="button" aria-expanded="true" aria-controls="collapse_<%= invoice_group.id %>">
             <h6 class="m-0 font-weight-bold text-primary"><%= invoice_group.title %></h6>
         </a>
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="collapse_<%= invoice_group.id %>">
             <div class="card-body">
-                <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: "fa fa-download float-right"%>
-                <%= link_to '', invoice_group_path(invoice_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash float-right"%>
-
-                <%= turbo_frame_tag "invoices" do %>
                 <div class="row">
-                    <%= render invoice_group.invoices %>
+                    <%= turbo_frame_tag "invoices", class: "col-md-11 row" do %>
+                        <%= render invoice_group.filtered_invoices((params[:search][:from_date] rescue nil), (params[:search][:to_date] rescue nil)) %>
+                    <% end %>
+                    <div class= "col-md-1 float-right">
+                        <%= link_to '', invoice_group_path(id: invoice_group.id, format: :csv), class: " fa fa-download"%> &ensp;
+                        <%= form_for(invoice_group, :remote => true) do |f| %>
+                            <%= token_tag %> 
+                            <%= f.check_box :downloaded, :onchange => '$(this.form).submit();' %>
+                        <% end %>
+                        <%= link_to '', invoice_group_path(invoice_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash"%>
+                    </div>
                 </div>
-                <% end %>
             </div>
         </div>
     </div>
