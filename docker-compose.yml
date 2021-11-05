@@ -14,13 +14,14 @@ services:
     #   - ./:/var/www/cashnow/
     external_links:
       - pg_12:pg_12
-    restart: always
+    # restart: always
     networks:
       - database
       - redis
     ports:
       - '${PORT:-3000}:3000'
     environment:
+      PORT: ${PORT}
       RAILS_ENV: ${RAILS_ENV}
       NODE_ENV: ${NODE_ENV}
       REDIS_URL: ${REDIS_URL}
