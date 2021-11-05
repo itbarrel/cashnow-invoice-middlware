@@ -2,8 +2,8 @@ FROM ruby:3.0.2-alpine
 
 # Setting env up
 ENV NODE_ENV='production'
-ENV RACK_ENV='development'
-ENV RAILS_ENV='development'
+ENV RACK_ENV='production'
+ENV RAILS_ENV='production'
 ENV APP_PATH='/var/www/cashnow/'
 
 # RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - 
@@ -17,6 +17,7 @@ WORKDIR $APP_PATH
 # Adding gems
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
+COPY package.json package.json
 COPY yarn.lock yarn.lock
 
 RUN gem install bundler:2.2.27
@@ -26,21 +27,10 @@ RUN yarn install --ignore-engines --force
 # Adding project files
 COPY . $APP_PATH
 
-# Adding bower components
-# RUN node -v
-# RUN rake bower:install
-
 RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
 RUN bundle exec rails webpacker:compile
 
-# COPY *.sh $APP_PATH
-# RUN chmod +x *.sh
-
-CMD ["bundle", "exec", "rails", "s"]
-#RUN bash startup.sh
-
 EXPOSE 3000
-# CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
-# CMD ["rails", "s"]
-# CMD ["bash", "startup.sh"]
-# CMD ["bundle", "exec", "foreman", "start"]
+
+# CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "foreman", "start"]
