@@ -2,6 +2,8 @@ version: '3'
 networks:
   database:
     external: true
+  redis:
+    external: true
 
 services:
   backend:
@@ -15,6 +17,7 @@ services:
     restart: always
     networks:
       - database
+      - redis
     ports:
       - '${PORT:-3000}:3000'
     environment:
