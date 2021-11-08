@@ -16,13 +16,15 @@ import "jquery"
 import "channels"
 import "@hotwired/turbo-rails"
 
+
+import "./sb-admin-2.min"
+import "./sb-admin-2"
+import "./bootstrap-bundle/bootstrap.bundle.min"
+import "./jquery-easing/jquery.easing.min"
+
 import "./stylesheets/fontawesome/css/all.min.css"
 import "./stylesheets/sb-admin-2.min.css"
 import "./stylesheets/application.scss"
-
-import "./bootstrap-bundle/bootstrap.bundle.min"
-import "./jquery-easing/jquery.easing.min"
-import "./sb-admin-2.min"
 // import "./chart.min"
 // import "./Chart.bundle.min"
 // import "./demo/chart-area-demo"
