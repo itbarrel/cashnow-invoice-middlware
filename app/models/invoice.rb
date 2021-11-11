@@ -33,7 +33,7 @@ class Invoice < ApplicationRecord
           invoice.vendor.vendor_code,
           invoice.data['vendor_name'],
           invoice.data['vendor_invoice_no'],
-          invoice.data['vendor_invoice_date'].to_date.strftime('%d/%m/%y'),
+          invoice.data['vendor_invoice_date'].to_date.strftime('%d-%m-%y'),
           nil,
           invoice.data['vendor_invoice_amount'].to_f,
           invoice.data['vendor_invoice_tax'].to_f,
