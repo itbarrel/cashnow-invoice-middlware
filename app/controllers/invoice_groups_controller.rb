@@ -3,7 +3,7 @@ class InvoiceGroupsController < ApplicationController
     skip_before_action :verify_authenticity_token, :only => [:update]
 
     def show
-        @invoices = @ig.invoices
+        @invoices = @ig.filtered_invoices((params[:search][:from_date] rescue nil), (params[:search][:to_date] rescue nil))
 
         respond_to do |format|
             format.csv { send_data @invoices.to_csv, filename: "#{@ig.title}.csv" }
