@@ -14,7 +14,7 @@
             <td><%= invoice.vendor.vendor_code %></td>
             <td><%= invoice.data['vendor_name'] %></td>
             <td><%= invoice.data['vendor_invoice_no'] %></td>
-            <td><%= invoice.data['vendor_invoice_date'].to_date.strftime('%d-%m-%y') %></td>
+            <td><%= invoice.data['vendor_invoice_date'].to_date.strftime('%d-%m-%Y') %></td>
             <td><%= nil %></td>
             <td><%= invoice.data['vendor_invoice_amount'].to_f %></td>
             <td><%= invoice.data['vendor_invoice_tax'].to_f %></td>
