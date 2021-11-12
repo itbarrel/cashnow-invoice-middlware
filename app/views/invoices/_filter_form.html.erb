@@ -1,17 +1,14 @@
 <%= form_for(:search, class: 'form-inline', url: vendor_invoices_path, method: :get) do |form| %>
-    <div class="row margin_zero">
-        <div class="col-sm-6 col-md-2">
+    <div class="row ml-2">
+        <div class="form-group ml-2">
             <%= form.date_field :from_date, data: { behavior: 'daterangepicker' } , class: "form-control datepicker " %>
         </div>
-        <div class="col-sm-6 col-md-2">
+        <div class="form-group ml-2">
             <%= form.date_field :to_date, data: { behavior: 'daterangepicker' }, class: "form-control datepicker" %>
         </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="form-group ml-2">
             <%= form.submit "Search", class: 'btn btn-primary' %>
         </div>
-        <div class="col-sm-6 col-md-2 text-right">
-            <%= link_to '', fetch_data_client_vendor_path(@vendor.client, @vendor), method: :post, class: "btn btn-primary fa fa-paper-plane"%>
-            <%= link_to "Back" , client_vendors_path(@vendor.client_id), class: "btn btn-primary"%>
-        </div>
+        <div class="col-sm-6 col-md-4"></div>
     </div>
 <% end %>

@@ -6,7 +6,7 @@ class VendorApiProxyWorker
     # formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y %I:%M %p')
     ig = InvoiceGroup.where(title: formated_time, vendor: vendor).first_or_create
     duplicate_invoices = ig.invoices.where("data->>'vendor_invoice_no' = ?", data_to_post['vendor_invoice_no'])
-    data_to_post['vendor_invoice_date'] = data_to_post['vendor_invoice_date'].to_date.strftime('%d-%b-%y')
+    data_to_post['vendor_invoice_date'] = data_to_post['vendor_invoice_date'].to_date.strftime('%d-%b-%Y')
     if duplicate_invoices.length.zero?
       Invoice.create(data: data_to_post, invoice_group: ig)
     else
