@@ -6,7 +6,8 @@ class InvoiceGroupsController < ApplicationController
         @invoices = @ig.invoices
 
         respond_to do |format|
-            format.csv { send_data @invoices.to_csv, filename: "#{Date.today}.csv" }
+            format.csv { send_data @invoices.to_csv, filename: "#{@ig.title}.csv" }
+            format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{@ig.title}.xls\"" }
             @ig.update(downloaded: true)
         end
     end
