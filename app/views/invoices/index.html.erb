@@ -12,5 +12,5 @@
 </div>
 
 <%= turbo_frame_tag "invoice_groups" do %>
-  <%= render @invoice_groups.order(:downloaded) %>
+  <%= render @invoice_groups.order("downloaded, date(title) DESC") %>
 <% end %>
