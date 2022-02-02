@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_075626) do
+ActiveRecord::Schema.define(version: 2022_02_01_083120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_075626) do
     t.uuid "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "document_type"
     t.index ["client_id"], name: "index_apis_on_client_id"
   end
 
@@ -37,21 +38,21 @@ ActiveRecord::Schema.define(version: 2021_11_04_075626) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "invoice_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "document_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.uuid "vendor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "downloaded", default: false
-    t.index ["vendor_id"], name: "index_invoice_groups_on_vendor_id"
+    t.index ["vendor_id"], name: "index_document_groups_on_vendor_id"
   end
 
-  create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.json "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "invoice_group_id"
-    t.index ["invoice_group_id"], name: "index_invoices_on_invoice_group_id"
+    t.uuid "document_group_id"
+    t.index ["document_group_id"], name: "index_documents_on_document_group_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -69,12 +70,12 @@ ActiveRecord::Schema.define(version: 2021_11_04_075626) do
   create_table "vendors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "vendor_code"
     t.uuid "client_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string "name"
     t.index ["client_id"], name: "index_vendors_on_client_id"
   end
 
-  add_foreign_key "invoice_groups", "vendors"
+  add_foreign_key "document_groups", "vendors"
   add_foreign_key "vendors", "clients"
 end

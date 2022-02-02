@@ -1,5 +1,5 @@
-<%= turbo_stream_from "invoice_groups" %>
-<%= turbo_stream_from "invoices" %>
+<%= turbo_stream_from "document_groups" %>
+<%= turbo_stream_from "documents" %>
 
 <div class="row">
   <div class="col-md-10">
@@ -11,6 +11,6 @@
   </div>
 </div>
 
-<%= turbo_frame_tag "invoice_groups" do %>
-  <%= render @invoice_groups.order("downloaded, date(title) DESC") %>
+<%= turbo_frame_tag "document_groups" do %>
+  <%= render @document_groups.order("downloaded, date(title) DESC") %>
 <% end %>

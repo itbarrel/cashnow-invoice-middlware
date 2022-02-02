@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
     before_action :find_client, only: %i[ show edit update destroy fetch_token ]
 
     def index
-        @clients = Client.all
+        @clients = ClientService.new.all
     end
 
     def show
@@ -69,8 +69,8 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-        params.require(:client).permit(:name , :company_name, :username, :password, :token,
-            login_api_attributes: [ :id, :api_type, :api_method, :api_url, :client_id ]
+        params.require(:client).permit(:name , :company_name, :username, :password, :token ,
+            login_api_attributes: [ :id, :api_type, :api_method, :api_url, :client_id, :document_type ]
         )
         # par[:login_api_attributes][:api_type] = par[:login_api_attributes][:api_type].to_i
         # par[:login_api_attributes][:api_method] = par[:login_api_attributes][:api_method].to_i

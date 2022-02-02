@@ -16,7 +16,20 @@ Rails.application.routes.draw do
     end
   end
   resources :vendors, only: [] do
-    resources :invoices, only: [:index, :destroy]
+    resources :documents, only: [:index, :destroy]
   end
-  resources :invoice_groups, only: [:show, :update, :destroy] 
+  resources :document_groups, only: [:show, :update, :destroy] 
+
+  namespace :api do
+    namespace :v1 do
+      resources :clients , only: [:index] do
+        resources :vendors, only: [:index]    
+      end
+      resources :vendors, only: [:index,:create]    
+      resources :vendors, only: [] do
+        resources :documents, only: [:index]
+      end
+      resources :documents, only: [:index]
+    end 
+  end 
 end

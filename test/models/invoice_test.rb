@@ -1,6 +1,6 @@
 require "test_helper"
 
-class InvoiceTest < ActiveSupport::TestCase
+class DocumentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

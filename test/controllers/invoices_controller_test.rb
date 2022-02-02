@@ -1,13 +1,13 @@
 require "test_helper"
 
-class InvoicesControllerTest < ActionDispatch::IntegrationTest
+class DocumentsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get invoices_index_url
+    get documents_index_url
     assert_response :success
   end
 
   test "should get destroy" do
-    get invoices_destroy_url
+    get documents_destroy_url
     assert_response :success
   end
 end

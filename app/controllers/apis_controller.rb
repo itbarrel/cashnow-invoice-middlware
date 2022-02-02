@@ -48,7 +48,7 @@ class ApisController < ApplicationController
   end
 
   def api_params
-    params.require(:api).permit(:api_type, :api_method, :api_url)
+    params.require(:api).permit(:api_type, :api_method, :api_url , :document_type)
   end
   
 end
