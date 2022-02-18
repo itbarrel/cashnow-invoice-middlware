@@ -1,27 +1,29 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class ApiControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
+  test 'should get create' do
     get api_create_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get api_new_url
     assert_response :success
   end
 
-  test "should get update" do
+  test 'should get update' do
     get api_update_url
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get api_edit_url
     assert_response :success
   end
 
-  test "should get delete" do
+  test 'should get delete' do
     get api_delete_url
     assert_response :success
   end

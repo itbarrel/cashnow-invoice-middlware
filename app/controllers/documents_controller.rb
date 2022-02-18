@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DocumentsController < ApplicationController
   before_action :find_vendor
   before_action :find_document, only: %i[destroy]
@@ -7,14 +9,20 @@ class DocumentsController < ApplicationController
 
     if params[:search] && params[:search][:from_date].present?
       start_date = params[:search][:from_date]
-      @document_groups = @document_groups.joins(:documents).where("(documents.data->>'vendor_document_date')::date > ?", start_date.to_date).distinct
+      @document_groups = @document_groups.joins(:documents).where(
+        "(documents.data->>'vendor_invoice_date')::date > ?", start_date.to_date
+      ).distinct
     end
+    @document_groups = @vendor.document_groups.where(id: @document_groups.ids)
 
-    if params[:search] && params[:search][:to_date].present?
-      end_date = params[:search][:to_date]
-      @document_groups = @document_groups.joins(:documents).where("(documents.data->>'vendor_document_date')::date < ?", end_date.to_date).distinct
-    end
-    
+    return unless params[:search] && params[:search][:to_date].present?
+
+    end_date = params[:search][:to_date]
+    @document_groups = @document_groups.joins(:documents).where(
+      "(documents.data->>'vendor_invoice_date')::date < ?", end_date.to_date
+    ).distinct
+
+    @document_groups = @vendor.document_groups.where(id: @document_groups.ids)
   end
 
   def destroy

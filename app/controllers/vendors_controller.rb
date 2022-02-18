@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class VendorsController < ApplicationController
   before_action :find_client
-  before_action :find_vendor, only: %i[ show edit update destroy fetch_data ]
-  
+  before_action :find_vendor, only: %i[show edit update destroy fetch_data]
+
   def index
     @vendors = @client.vendors
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @vendor = @client.vendors.build
@@ -15,13 +16,13 @@ class VendorsController < ApplicationController
 
   def create
     @vendor = @client.vendors.build(vendor_params)
-    respond_to do |format|   
-      if @vendor.save   
-        format.html { redirect_to client_vendors_url, notice: 'vendor was successfully created.' }   
-        format.json { render :show, status: :created, location: @vendor }   
-      else   
-        format.html { render :new }   
-        format.json { render json: @vendor.errors, status: :unprocessable_entity } 
+    respond_to do |format|
+      if @vendor.save
+        format.html { redirect_to client_vendors_url, notice: 'vendor was successfully created.' }
+        format.json { render :show, status: :created, location: @vendor }
+      else
+        format.html { render :new }
+        format.json { render json: @vendor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -29,41 +30,40 @@ class VendorsController < ApplicationController
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
-        format.html { redirect_to client_vendors_path, notice: "vendor was successfully updated." }
+        format.html { redirect_to client_vendors_path, notice: 'vendor was successfully updated.' }
         format.json { render :show, status: :ok, location: @vendor }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @vendor.errors, status: :unprocessable_entity }
       end
-    end 
+    end
   end
 
   def destroy
-   
     respond_to do |format|
-        if @vendor.destroy
-            format.html { redirect_to client_vendors_path, notice: "vendor was successfully delete." }
-            format.json { render :index, status: :delete, location: @vendor }
-        else
-            format.html { render :edit, status: :unprocessable_entity }
-            format.json { render json: @vendor.errors, status: :unprocessable_entity }
-        end
+      if @vendor.destroy
+        format.html { redirect_to client_vendors_path, notice: 'vendor was successfully delete.' }
+        format.json { render :index, status: :delete, location: @vendor }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @vendor.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def fetch_data
-    #if no token, reject
+    # if no token, reject
     @client.apis.each do |api|
       VendorApiProxyWorker.perform_async(@client.id, api.id, @vendor.id)
       # message says your request is being processed
     end
-    flash[:notice] = "Data Fetch api has started."
+    flash[:notice] = 'Data Fetch api has started.'
     # respond_to do |format|
     #     format.json { render :index, status: :delete, location: @vendor }
     # end
     redirect_to request.original_fullpath
   end
-  
+
   private
 
   def find_vendor

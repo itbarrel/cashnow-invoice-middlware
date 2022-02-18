@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Vendor < ApplicationRecord
   belongs_to :client
   has_many :document_groups, dependent: :destroy

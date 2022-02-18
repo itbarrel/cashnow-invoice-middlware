@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeColumnDefault < ActiveRecord::Migration[6.1]
   def change
     change_column_default :vendors, :created_at, -> { 'CURRENT_TIMESTAMP' }

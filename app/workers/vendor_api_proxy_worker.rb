@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VendorApiProxyWorker
   include Sidekiq::Worker
 
@@ -15,7 +17,6 @@ class VendorApiProxyWorker
   end
 
   def perform(client_id, api_id, vendor_id)
-
     client = Client.find_by_id(client_id)
     return if client.nil?
     return if client.token.nil?
@@ -26,32 +27,30 @@ class VendorApiProxyWorker
     vendor = client.vendors.find_by_id(vendor_id)
     return if vendor.nil?
 
-    clientProxyObj = ClientProxy.new (client_id)
+    client_proxy_obj = ClientProxy.new(client_id)
 
-    if api.fetch_data?
-      response = clientProxyObj.fetch_data_for(api, vendor)
-      response = JSON.parse(response[:message])
-      # response.['vendor_document_date'].to_date.strftime('%d-%b-%y')
-      error = response['error']
-      data = response['data']
-      # response['vendor_document_date'].to_date.strftime('%d/%m/%y')
-      # data['vendor_document_date'].to_date.strftime('%d/%m/%y')
-      
-      # if success in response 
-      if error == false
-        if data.kind_of?(Array)
-          data.each do |elem|
-            post_document(elem, vendor)
-          end
-        else
-          post_document(data, vendor)
+    return unless api.fetch_data?
+
+    response = client_proxy_obj.fetch_data_for(api, vendor)
+    response = JSON.parse(response[:message])
+    # response.['vendor_document_date'].to_date.strftime('%d-%b-%y')
+    error = response['error']
+    data = response['data']
+    # response['vendor_document_date'].to_date.strftime('%d/%m/%y')
+    # data['vendor_document_date'].to_date.strftime('%d/%m/%y')
+
+    # if success in response
+    if error == false
+      if data.is_a?(Array)
+        data.each do |elem|
+          post_document(elem, vendor)
         end
       else
-        if data.kind_of?(Array)
-          data.each do |elem|
-            post_document(data, vendor)
-          end
-        end
+        post_document(data, vendor)
+      end
+    elsif data.is_a?(Array)
+      data.each do |_elem|
+        post_document(data, vendor)
       end
     end
   end

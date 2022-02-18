@@ -1,37 +1,23 @@
+# frozen_string_literal: true
+
 class Api::V1::ApiController < ActionController::API
-    respond_to :json
+  include ActionController::RequestForgeryProtection
+  include ActionController::HttpAuthentication::Token::ControllerMethods
 
-    # before_action :authenticate_user!
-    # before_action :general_initilization
+  protect_from_forgery with: :null_session
+  respond_to :json
 
-    # def after_sign_in_path_for(resource)
-    #     root_path
-    # end
+  before_action :authenticate_client
 
-    # def after_sign_out_path_for(resource)
-    #     new_user_session_path
-    # end
+  def authenticate_client
+    if request.headers['Authorization'].nil?
+      head :unauthorized
+      return
+    end
 
-    # def general_initilization
-    #     @side_menu_items = [{
-    #         text: 'Dashboard',
-    #         link: '/',
-    #         key: '',
-    #         iconClass: 'fa-tachometer-alt'
-    #     },
-    #     {
-    #         text: 'Clients',
-    #         link: '/clients',
-    #         key: 'clients',
-    #         iconClass: 'fa-gavel'
-    #     },{
-    #         text: 'Vendors',
-    #         key: 'vendors',
-    #         iconClass: 'fa-users'
-    #     },{
-    #         text: 'Documents',
-    #         key: 'documents',
-    #         iconClass: 'fa-newspaper'
-    #     }]
-    # end
+    @token = request.headers['Authorization'].split(' ').last
+    @current_client = Client.find_by_api_token(@token)
+
+    head :unauthorized if @current_client.nil?
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateInvoiceGroups < ActiveRecord::Migration[6.1]
   def change
     create_table :invoice_groups, id: :uuid do |t|

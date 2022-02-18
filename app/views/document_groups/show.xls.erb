@@ -11,14 +11,14 @@
     </tr>
     <% @documents.each do |document| %>
         <tr>
-            <td><%= document.vendor.vendor_code %></td>
-            <td><%= document.data['vendor_name'] %></td>
-            <td><%= document.data['vendor_document_no'] %></td>
-            <td><%= document.data['vendor_document_date'].to_date.strftime('%d-%m-%Y') %></td>
+            <td><%= document&.vendor.vendor_code %></td>
+            <td><%= document&.data['vendor_name'] %></td>
+            <td><%= document&.data['vendor_invoice_no'] %></td>
+            <td><%= document&.data['vendor_invoice_date']&.to_date&.strftime('%d-%m-%Y') %></td>
             <td><%= nil %></td>
-            <td><%= document.data['vendor_document_amount'].to_f %></td>
-            <td><%= document.data['vendor_document_tax'].to_f %></td>
-            <td><%= (document.data['vendor_document_amount'].to_f + document.data['vendor_document_tax'].to_f) %></td>
+            <td><%= document&.data['vendor_invoice_amount'].to_f %></td>
+            <td><%= document&.data['vendor_invoice_tax'].to_f %></td>
+            <td><%= (document&.data['vendor_invoice_amount']&.to_f + document&.data['vendor_invoice_tax']&.to_f) %></td>
         </tr>
     <% end %>
 </table>
