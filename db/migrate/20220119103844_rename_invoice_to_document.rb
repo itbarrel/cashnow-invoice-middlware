@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameDocumentToDocument < ActiveRecord::Migration[6.1]
+class RenameInvoiceToDocument < ActiveRecord::Migration[6.1]
   def change
     rename_table :invoices, :documents
   end
