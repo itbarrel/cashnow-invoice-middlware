@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClientApiProxyWorker
   include Sidekiq::Worker
 
@@ -7,17 +9,17 @@ class ClientApiProxyWorker
     return if client.nil?
     return if client.login_api.nil?
 
-    clientProxyObj = ClientProxy.new (client_id)
-    
-    response = clientProxyObj.authenticate
+    client_proxy_obj = ClientProxy.new(client_id)
+
+    response = client_proxy_obj.authenticate
     response = JSON.parse(response[:message].to_json)
     error = response['error']
-    # if success in response 
-    if error == false
-      # client find
-      token = response['token']
-      # client update with token placed in response
-      client.update(token: token)
-    end
+    # if success in response
+    return unless error == false
+
+    # client find
+    token = response['token']
+    # client update with token placed in response
+    client.update(token: token)
   end
 end

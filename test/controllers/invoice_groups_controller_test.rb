@@ -1,6 +1,8 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class InvoiceGroupsControllerTest < ActionDispatch::IntegrationTest
+require 'test_helper'
+
+class DocumentGroupsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

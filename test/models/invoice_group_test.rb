@@ -1,6 +1,8 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class InvoiceGroupTest < ActiveSupport::TestCase
+require 'test_helper'
+
+class DocumentGroupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,47 +1,49 @@
+# frozen_string_literal: true
+
 class ClientProxy < BaseProxy
   def initialize(client_id)
-    @content  = ""
+    @content  = ''
     @log_path = 'log/worker.log'
     @client_id = client_id
-    @clientSerializer = ClientSerializer.new(client_id)
+    @client_serializer = ClientSerializer.new(client_id)
+    super()
   end
 
   def authenticate
-    payload = @clientSerializer.login_payload
+    payload = @client_serializer.login_payload
     if payload.nil?
       @content += "##{@client_id} Client data not found\n"
       return nil
     end
 
-    url =  @clientSerializer.api_url
-    response = proxy_api(url, "POST", payload)
+    url = @client_serializer.api_url
+    response = proxy_api(url, 'POST', payload)
 
-    if response.response.present? && response.code == 200
-      @content += "##{@client_id} Client response >>>> Created: 200\n"
-    else
-      @content += "##{@client_id} Order response >>>>> #{response}\n"
-    end
+    @content += if response.response.present? && response.code == 200
+                  "##{@client_id} Client response >>>> Created: 200\n"
+                else
+                  "##{@client_id} Order response >>>>> #{response}\n"
+                end
 
-    return {code: response.code, message: response }
+    { code: response.code, message: response }
   end
 
   def fetch_data_for(api, vendor)
-    payload = @clientSerializer.fetch_data_payload(vendor)
+    payload = @client_serializer.fetch_data_payload(vendor)
     if payload.nil?
       @content += "##{@client_id} Client data not found\n"
       return nil
     end
 
-    url =  api.api_url
-    response = proxy_api(url, "POST", payload)
+    url = api.api_url
+    response = proxy_api(url, 'POST', payload)
 
-    if response.response.present? && response.code == 200
-      @content += "##{@client_id} Client response >>>> Created: 200\n"
-    else
-      @content += "##{@client_id} Order response >>>>> #{response}\n"
-    end
+    @content += if response.response.present? && response.code == 200
+                  "##{@client_id} Client response >>>> Created: 200\n"
+                else
+                  "##{@client_id} Order response >>>>> #{response}\n"
+                end
 
-    return {code: response.code, message: response }
+    { code: response.code, message: response }
   end
-
 end

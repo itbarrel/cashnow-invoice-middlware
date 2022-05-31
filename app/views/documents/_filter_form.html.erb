@@ -1,4 +1,4 @@
-<%= form_for(:search, class: 'form-inline', url: vendor_invoices_path, method: :get) do |form| %>
+<%= form_for(:search, class: 'form-inline', url: vendor_documents_path, method: :get) do |form| %>
     <div class="row ml-2">
         <div class="form-group ml-2">
             <%= form.date_field :from_date, data: { behavior: 'daterangepicker' } , class: "form-control datepicker " %>

@@ -1,8 +1,10 @@
-class ProxyException < StandardError
-    attr_accessor :code
+# frozen_string_literal: true
 
-    def initialize(message = nil, code = nil)
-        super(message)
-        self.code = code
-    end
+class ProxyException < StandardError
+  attr_accessor :code
+
+  def initialize(message = nil, code = nil)
+    super(message)
+    self.code = code
+  end
 end
