@@ -1,10 +1,64 @@
 @import 'toastr';
-.datepicker{
+
+.datepicker {
     width: 170px !important;
 }
-.accordian_head_success{
+
+.accordian_head_success {
     background-color: rgb(180, 248, 180);
 }
-.margin_zero{
+
+.margin_zero {
     margin: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+    .responesive_button {
+        margin-right: 10px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .responesive_button {
+        margin-right: 14px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .responesive_button {
+        margin-right: 15px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .responesive_button {
+        margin-right: 25px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .responesive_button {
+        margin-right: 0px;
+    }
+}
+
+
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+    .card_responsive {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .client {
+        margin: 30px;
+    }
 }

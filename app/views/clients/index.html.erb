@@ -3,8 +3,8 @@
 
 <div class="container-fluid">
   <div class="d-sm-flex align-items-center justify-content-between mb-4 row">
-    <h1 class="h3 mb-0 text-gray-800">Clients</h1>
-    <%= link_to "Add Client" , new_client_path , class: "btn btn-primary float-right" %>
+    <h1 class="h3 mb-0 text-gray-800 client" >Clients</h1>
+    <%= link_to "Add Client" , new_client_path , class: "btn btn-primary float-right responesive_button" %>
   </div>
 
     <%= turbo_frame_tag "clients" do %>
