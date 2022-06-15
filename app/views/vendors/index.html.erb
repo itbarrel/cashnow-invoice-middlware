@@ -1,40 +1,36 @@
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Vendors</h6>
-        <br />
-        <div class="float-right" >
-        <%= link_to "Create New Vendor" , new_client_vendor_path , class: "btn btn-primary" %> |
-        <%= link_to "Back" , clients_path, class: "btn btn-primary responesive_button"%>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Vendor Code</th>
-                        <th>Vendor Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @vendors.each do |vendor| %>
-                        <tr>
-                            <td><%=vendor.vendor_code %></td>
-                            <td><%=vendor.name %></td>
-                            <td>
-                                <% if @client.apis.present?%>
-                                <%= link_to '', fetch_data_client_vendor_path(@client, vendor), method: :post, class: "action-icons fa fa-paper-plane"%>
-                                <% end %>
-                                <%= link_to '', vendor_documents_path(vendor), class: "action-icons fa fa-newspaper"%>
-                                |
-                                <%= link_to '', edit_client_vendor_url(@client, vendor), class: "action-icons fa fa-edit"%>
-                                <%= link_to '', client_vendor_path(@client, vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-                            </td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="container_setting">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4 row">
+    <h1 class="h3 mb-0 text-gray-800 client" >Vendors</h1>
+    <%= link_to "Create New Vendor" , new_client_vendor_path , class: "btn btn-primary float-right" %> |
+    <%= link_to "Back" , clients_path, class: "btn btn-primary float-right"%>
+  </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Vendor Code</th>
+                <th>Vendor Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @vendors.each do |vendor| %>
+                <tr>
+                    <td><%=vendor.vendor_code %></td>
+                    <td><%=vendor.name %></td>
+                    <td>
+                        <% if @client.apis.present?%>
+                        <%= link_to '', fetch_data_client_vendor_path(@client, vendor), method: :post, class: "action-icons fa fa-paper-plane"%>
+                        <% end %>
+                        <%= link_to '', vendor_documents_path(vendor), class: "action-icons fa fa-newspaper"%>
+                        |
+                        <%= link_to '', edit_client_vendor_url(@client, vendor), class: "action-icons fa fa-edit"%>
+                        <%= link_to '', client_vendor_path(@client, vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>

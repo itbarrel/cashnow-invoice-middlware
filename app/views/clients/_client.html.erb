@@ -6,41 +6,33 @@
         </a>
         <div class="collapse show" id="collapse_<%= client.id %>">
             <div class="card-body">
-                <ul>
-                    <li>
+                
                         <div class="row">
-                            <div class="col-xs-9 col-md-8 col-ms-8">
+                            <div class="col-xs-9 col-md-8 col-ms-8 client-data">
                                 <strong>UserName: </strong> <%= client.username %>
                                 <strong>Password: </strong> <%= client.password %>
                                 <% if client.token.present? %>
                                     <p><strong>Token: </strong> <%= client.token %></p>
                                 <% end %>
                             </div>
-                            <div class="col-xs-3 col-md-4 col-ms-4">
-                                <%= link_to '', fetch_token_client_path(client), method: :post, class: "action-icons fa fa-paper-plane"%>
-                                <%= link_to '', client_vendors_path(client), data: { turbo: false }, class: "action-icons fa fa-users"%>
-                                |
-                                <%= link_to '', new_client_api_path(client), data: { turbo: false }, class: "action-icons fa fa-plus-square"%>
-                                <%= link_to '', edit_client_path(client), data: { turbo: false }, class: "action-icons fa fa-edit"%>
-                                <%= link_to '', client_path(client), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
-                            </div>
+                            <%= render partial: "buttons", locals: { client: client} %>
                         </div>
-                    </li>
+                    
                     <% if client.login_api.present? %>
-                        <li>
+                        
                             <h5>Login API</h5>
                             <%= render partial: "apis/api", locals: { client: client, api: client.login_api } %>
-                        </li>
+                        
                     <% end %>
                     <% if client.apis.present? %>
-                        <li>
+                        
                             <h5>Data Fetch API</h5>
                             <% client.apis.each_with_index do |api, index| %>
                                 <%= render partial: "apis/api", locals: { client: client, api: api } %>
                             <% end %>
-                        </li>
+                        
                     <% end %>
-                </ul>
+                
             </div>
         </div>
     </div>

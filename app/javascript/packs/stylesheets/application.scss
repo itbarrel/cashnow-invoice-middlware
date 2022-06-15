@@ -12,53 +12,125 @@
     margin: 0px;
 }
 
-@media only screen and (max-width: 600px) {
-    .responesive_button {
-        margin-right: 10px;
+// client page responsivnes
+
+// For typical mobile devices
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+    .dropdown-menu {
+        text-align: center;
+        float: left;
+        width: 10%;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+        background: #EEE;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        margin-left: -20px !important;
+    }
+
+    .icon_setting {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 15px;
+        margin-right: 13px;
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .responesive_button {
-        margin-right: 14px;
+// For mobile (landscape)
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .dropdown-menu {
+        text-align: center;
+        float: left;
+        width: 10%;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+        background: #EEE;
+        cursor: pointer;
     }
-}
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .responesive_button {
-        margin-right: 15px;
+    .button_dropdown {
+        margin-left: -28px !important;
     }
-}
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    .responesive_button {
-        margin-right: 25px;
+    .icon_setting {
+        display: none;
     }
-}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    .responesive_button {
-        margin-right: 0px;
+    .container_setting {
+        margin-left: 13px;
+        margin-right: 13px;
     }
-}
 
-
-
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
     .card_responsive {
         width: 100%;
         display: block;
         margin-bottom: 20px;
     }
+
 }
 
+// For tablet
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+    .button_dropdown {
+        display: none;
+    }
+
+
+    .client-data {
+        display: flex;
+
+    }
+
+    .container_setting {
+        margin-left: 15px;
+        margin-right: 13px;
+    }
+}
+
+// For small desktop
+@media only screen and (min-width: 980px) and (max-width: 1023px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 15px;
+        margin-right: 13px;
+    }
+
+}
+
+// For typical desktop
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 13px;
+        margin-right: 15px;
+    }
+}
+
+// For large desktop
 @media only screen and (min-width: 1200px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: -13px;
+        margin-right: 14px;
+    }
+
     .client {
         margin: 30px;
     }
+
 }

@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
         <p>
             <% if api.document_type.present?  %>
                 for:
                 <strong><%= api.document_type.capitalize %></strong>
             <% end %>
-            &ensp;method:<strong><%= api.display_method %></strong>  
+            method:<strong><%= api.display_method %></strong>  
         </p>
         <%= api.api_url %>
     </div>
