@@ -172,3 +172,11 @@
 .display_flex {
     display: flex;
 }
+
+.icon_settings {
+    justify-content: space-between;
+}
+
+.icon_settings> :first-child {
+    max-width: 70%;
+}
