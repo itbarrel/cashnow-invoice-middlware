@@ -2,8 +2,8 @@
   <div class="">
     Actions:
   </div>
-  <div class="display_flex">
-    <div class="btn-group ">
+  <div class="display_flex align-items-center">
+    <div class="btn-group mr-2">
       <button type="button" class="download_btn btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa fa-download" ></i>
       </button>
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <%= form_for(document_group, :remote => true, class: 'ml-2') do |f| %>
+    <%= form_for(document_group, :remote => true) do |f| %>
       <%= token_tag %> 
       <%= f.check_box :downloaded, :onchange => '$(this.form).submit();' %>
     <% end %>

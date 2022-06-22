@@ -10,11 +10,9 @@
         <div class="collapse show" id="collapse_<%= document_group.id %>">
             <div class="card-body">
                 <%= render partial: "document_groups/buttons", locals: { document_group: document_group} %>
-                <div class="row">
-                    <%= turbo_frame_tag "documents", class: "col-md-12 row" do %>
-                        <%= render document_group.filtered_documents((params[:search][:from_date] rescue nil), (params[:search][:to_date] rescue nil)) %>
-                    <% end %>
-                </div>
+                <%= turbo_frame_tag "documents", class: "row" do %>
+                    <%= render document_group.filtered_documents((params[:search][:from_date] rescue nil), (params[:search][:to_date] rescue nil)) %>
+                <% end %>
             </div>
         </div>
     </div>
