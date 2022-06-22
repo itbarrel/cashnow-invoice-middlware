@@ -9,19 +9,11 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="collapse_<%= document_group.id %>">
             <div class="card-body">
+                <%= render partial: "document_groups/buttons", locals: { document_group: document_group} %>
                 <div class="row">
-                    <%= turbo_frame_tag "documents", class: "col-md-11 row" do %>
+                    <%= turbo_frame_tag "documents", class: "col-md-12 row" do %>
                         <%= render document_group.filtered_documents((params[:search][:from_date] rescue nil), (params[:search][:to_date] rescue nil)) %>
                     <% end %>
-                    <div class= "col-md-1 float-right ml-3">
-                        <%= link_to "XLS", document_group_path(id: document_group.id, format: :xls, search: {from_date: (params[:search][:from_date] rescue nil), to_date: (params[:search][:to_date] rescue nil)}) , class: "fa fa-download" %>
-                        <%= link_to 'CSV', document_group_path(id: document_group.id, format: :csv, search: {from_date: (params[:search][:from_date] rescue nil), to_date: (params[:search][:to_date] rescue nil)}), class: "fa fa-download "%> &ensp;
-                        <%= form_for(document_group, :remote => true) do |f| %>
-                            <%= token_tag %> 
-                            <%= f.check_box :downloaded, :onchange => '$(this.form).submit();' %>
-                        <% end %>
-                        <%= link_to '', document_group_path(document_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash"%>
-                    </div>
                 </div>
             </div>
         </div>

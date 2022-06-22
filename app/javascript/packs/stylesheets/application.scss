@@ -73,6 +73,9 @@
         margin-bottom: 20px;
     }
 
+    .back_btn {
+        margin: 8px;
+    }
 }
 
 // For tablet
@@ -104,6 +107,8 @@
         margin-right: 13px;
     }
 
+
+
 }
 
 // For typical desktop
@@ -133,4 +138,37 @@
         margin: 30px;
     }
 
+}
+
+.vendor_btn_setting {
+    text-align: right;
+}
+
+.vendor_container {
+    margin-right: 3px;
+}
+
+.btn_setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.download_btn {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+
+}
+
+.card_style {
+    background: white;
+    padding: 15px;
+    background-color: #f9f8f8;
+}
+
+.display_flex {
+    display: flex;
 }

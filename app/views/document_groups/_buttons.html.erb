@@ -1,0 +1,29 @@
+<div class="btn_setting">
+  <div class="">
+    Actions:
+  </div>
+  <div class="display_flex">
+    <div class="btn-group ">
+      <button type="button" class="download_btn btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-download" ></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to document_group_path(id: document_group.id, format: :xls, search: {from_date: (params[:search][:from_date] rescue nil), to_date: (params[:search][:to_date] rescue nil)}) , class: "dropdown-item" do %>
+            <i class="fa fa-download"></i> XLS
+          <% end %>
+        </li>
+        <li>
+          <%= link_to document_group_path(id: document_group.id, format: :csv, search: {from_date: (params[:search][:from_date] rescue nil), to_date: (params[:search][:to_date] rescue nil)}) , class: "dropdown-item" do %>
+            <i class="fa fa-download"></i> CSV
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <%= form_for(document_group, :remote => true, class: 'ml-2') do |f| %>
+      <%= token_tag %> 
+      <%= f.check_box :downloaded, :onchange => '$(this.form).submit();' %>
+    <% end %>
+    <%= link_to '', document_group_path(document_group),method: :delete,data: { confirm: 'Are you sure?' } ,class: "fa fa-trash ml-2"%>
+  </div>
+</div>
