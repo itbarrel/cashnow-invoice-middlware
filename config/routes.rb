@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :clients do
     member do
       post :fetch_token
+      get :fetch_ftp
     end
     resources :apis
     resources :vendors do

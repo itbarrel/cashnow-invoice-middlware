@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ClientsController < ApplicationController
-  before_action :find_client, only: %i[show edit update destroy fetch_token]
+  before_action :find_client, only: %i[show edit update destroy fetch_token fetch_ftp]
 
   def index
     @clients = ClientService.new.all
@@ -61,6 +61,13 @@ class ClientsController < ApplicationController
     # message says your request is being processed
   end
 
+  def fetch_ftp
+    FtpServerWorker.perform_async(@client.id)
+    flash[:notice] = 'FTP Server Start'
+    redirect_to clients_path
+    # message says your request is being processed
+  end
+
   private
 
   def find_client
@@ -68,8 +75,8 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).permit(:name, :company_name, :username, :password, :token,
-                                   login_api_attributes: %i[id api_type api_method api_url client_id document_type])
+    params.require(:client).permit(:name, :company_name, :username, :password, :token, :ftp_host, :ftp_port,
+      :ftp_user, :ftp_password, login_api_attributes: %i[id api_type api_method api_url client_id document_type])
     # par[:login_api_attributes][:api_type] = par[:login_api_attributes][:api_type].to_i
     # par[:login_api_attributes][:api_method] = par[:login_api_attributes][:api_method].to_i
     # par
