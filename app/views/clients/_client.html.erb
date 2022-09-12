@@ -18,7 +18,6 @@
                             </div>
                             <div class="col-xs-3 col-md-4 col-ms-4">
                                 <%= link_to '', fetch_token_client_path(client), method: :post, class: "action-icons fa fa-paper-plane"%>
-                                <%= link_to '', fetch_ftp_client_path(client), method: :get, class: "action-icons fa fa-paper-plane"%>
                                 <%= link_to '', client_vendors_path(client), data: { turbo: false }, class: "action-icons fa fa-users"%>
                                 |
                                 <%= link_to '', new_client_api_path(client), data: { turbo: false }, class: "action-icons fa fa-plus-square"%>

@@ -1,0 +1,4 @@
+:schedule:
+  fetch_clients:
+    cron: '* 0 * * 7'   # Runs every sunday, at 12am
+    class: FtpClientsWorker
