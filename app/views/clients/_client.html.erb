@@ -14,7 +14,7 @@
                             <p><strong>Token: </strong> <%= client.token %></p>
                         <% end %>
                     </div>
-                    <%= render partial: "buttons", locals: { client: client} %>
+                    <%= render partial: "clients/buttons", locals: { client: client} %>
                 </div>
             
                 <% if client.login_api.present? %>
