@@ -124,4 +124,16 @@ Rails.application.configure do
   config.hosts << "invoice.cashnow.pk"
   config.hosts << "localhost"
   config.hosts << "172.17.0.1"
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'invoice.cashnow.pk',
+  user_name:             ENV['SMTP_EMAIL'],
+  password:              ENV['SMTP_PASS'],
+  authentication:       'plain',
+  enable_starttls_auto: true,
+  open_timeout:         5,
+  read_timeout:         5 }
 end

@@ -62,7 +62,7 @@ class ClientsController < ApplicationController
   end
 
   def fetch_ftp
-    FtpServerWorker.perform_async(@client.id)
+    FtpClientWorker.perform_async(@client.id)
     flash[:notice] = 'FTP Server Start'
     redirect_to clients_path
     # message says your request is being processed
@@ -76,7 +76,7 @@ class ClientsController < ApplicationController
 
   def client_params
     params.require(:client).permit(:name, :company_name, :username, :password, :token, :ftp_host, :ftp_port,
-      :ftp_user, :ftp_password, login_api_attributes: %i[id api_type api_method api_url client_id document_type])
+      :ftp_user, :ftp_password, :notify_email, login_api_attributes: %i[id api_type api_method api_url client_id document_type])
     # par[:login_api_attributes][:api_type] = par[:login_api_attributes][:api_type].to_i
     # par[:login_api_attributes][:api_method] = par[:login_api_attributes][:api_method].to_i
     # par

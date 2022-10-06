@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_02_100722) do
+ActiveRecord::Schema.define(version: 2022_10_05_095024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100722) do
     t.string "ftp_port"
     t.string "ftp_user"
     t.string "ftp_password"
+    t.string "notify_email"
   end
 
   create_table "document_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

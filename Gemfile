@@ -42,8 +42,12 @@ group :development do
   gem 'rubocop-rails'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+  gem "letter_opener", "~> 1.8"
+  gem "pry-remote", "~> 0.1.8"
 end
 
 group :test do
   gem 'webdrivers'
 end
+
+
