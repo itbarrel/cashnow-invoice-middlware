@@ -83,4 +83,6 @@ Rails.application.configure do
   config.hosts << "localhost"
   config.hosts << "172.17.0.1"
   config.webpacker.check_yarn_integrity = false
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end

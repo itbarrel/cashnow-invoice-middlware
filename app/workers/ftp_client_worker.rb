@@ -10,6 +10,7 @@ class FtpClientWorker
                 connection.gettextfile(x)
             end
             connection.close()
+            ClientMailer.mailer(client).deliver if connection.closed?()
         end
     end
 end
