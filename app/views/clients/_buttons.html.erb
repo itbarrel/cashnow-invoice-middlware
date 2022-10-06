@@ -1,0 +1,18 @@
+ <div>
+    <%= link_to '', fetch_token_client_path(client), method: :post, class: "action-icons fa fa-paper-plane"%>
+    <%= link_to '', client_vendors_path(client), data: { turbo: false }, class: "action-icons fa fa-users"%>
+    |
+    <%= link_to '', new_client_api_path(client), data: { turbo: false }, class: "action-icons fa fa-plus-square"%>
+    <%= link_to '', edit_client_path(client), data: { turbo: false }, class: "action-icons fa fa-edit"%>
+    <%= link_to '', client_path(client), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons fa fa-trash"%>
+</div>
+<div class="dropdown button_dropdown">
+  <a class="dropdown-toggle fa fa-fw" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <%= link_to '', fetch_token_client_path(client), method: :post, class: "action-icons  fa fa-paper-plane"%>
+      <%= link_to '', client_vendors_path(client), data: { turbo: false }, class: "action-icons  fa fa-users "%>
+      <%= link_to '', new_client_api_path(client), data: { turbo: false }, class: "action-icons  fa fa-plus-square"%>
+      <%= link_to '', edit_client_path(client), data: { turbo: false }, class: "action-icons  fa fa-edit"%>
+      <%= link_to '', client_path(client), method: :delete, data: { turbo: false, confirm: 'Are you sure?' } ,class: "action-icons  fa fa-trash "%>
+  </ul>
+</div>

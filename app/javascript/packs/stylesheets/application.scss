@@ -1,10 +1,182 @@
 @import 'toastr';
-.datepicker{
+
+.datepicker {
     width: 170px !important;
 }
-.accordian_head_success{
+
+.accordian_head_success {
     background-color: rgb(180, 248, 180);
 }
-.margin_zero{
+
+.margin_zero {
     margin: 0px;
+}
+
+// client page responsivnes
+
+// For typical mobile devices
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+    .dropdown-menu {
+        text-align: center;
+        float: left;
+        width: 10%;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+        background: #EEE;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        margin-left: -20px !important;
+    }
+
+    .icon_setting {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 15px;
+        margin-right: 13px;
+    }
+}
+
+// For mobile (landscape)
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .dropdown-menu {
+        text-align: center;
+        float: left;
+        width: 10%;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+        background: #EEE;
+        cursor: pointer;
+    }
+
+    .button_dropdown {
+        margin-left: -28px !important;
+    }
+
+    .icon_setting {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 13px;
+        margin-right: 13px;
+    }
+
+    .card_responsive {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .back_btn {
+        margin: 8px;
+    }
+}
+
+// For tablet
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+    .button_dropdown {
+        display: none;
+    }
+
+
+    .client-data {
+        display: flex;
+
+    }
+
+    .container_setting {
+        margin-left: 15px;
+        margin-right: 13px;
+    }
+}
+
+// For small desktop
+@media only screen and (min-width: 980px) and (max-width: 1023px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 15px;
+        margin-right: 13px;
+    }
+
+
+
+}
+
+// For typical desktop
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: 13px;
+        margin-right: 15px;
+    }
+}
+
+// For large desktop
+@media only screen and (min-width: 1200px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        margin-left: -13px;
+        margin-right: 14px;
+    }
+
+    .client {
+        margin: 30px;
+    }
+
+}
+
+.vendor_btn_setting {
+    text-align: right;
+}
+
+.vendor_container {
+    margin-right: 3px;
+}
+
+.btn_setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.download_btn {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+
+}
+
+.card_style {
+    background: white;
+    padding: 15px;
+    background-color: #f3f3f3;
+}
+
+.display_flex {
+    display: flex;
+}
+
+.icon_settings {
+    justify-content: space-between;
+}
+
+.icon_settings> :first-child {
+    max-width: 70%;
 }

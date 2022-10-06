@@ -10,7 +10,9 @@
           <div id="content">
             <%= render 'layouts/navbar' %>
             <%= render 'layouts/flash_messages' %>
-            <%= yield %>
+            <div class="container-fluid container-sm container-md container-lg container-xl container-xxl">
+              <%= yield %>
+            </div>
             <%#= toastr_flash %>
           </div>
           <%= render 'layouts/footer' %>

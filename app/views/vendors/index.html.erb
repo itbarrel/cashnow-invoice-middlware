@@ -1,11 +1,15 @@
+<div class="vendor_container">
+    <div class="align-items-right mb-4 vendor_btn_setting">
+        <%= link_to new_client_vendor_path, class: "btn btn-primary" do %>
+            <i class="fa fa-plus"></i> Vendor
+        <% end %>
+        <%= link_to "Back" , clients_path, class: "btn btn-primary"%>
+    </div>
+</div>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Vendors</h6>
-        <br />
-        <div class="float-right" >
-        <%= link_to "Create New Vendor" , new_client_vendor_path , class: "btn btn-primary" %> |
-        <%= link_to "Back" , clients_path, class: "btn btn-primary"%>
-        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -34,7 +38,6 @@
                         </tr>
                     <% end %>
                 </tbody>
-            </table>
         </div>
     </div>
 </div>

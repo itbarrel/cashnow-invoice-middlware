@@ -1,15 +1,14 @@
 
 <%= turbo_stream_from "clients" %>
-
-<div class="container-fluid">
+<div class="container_setting">
   <div class="d-sm-flex align-items-center justify-content-between mb-4 row">
-    <h1 class="h3 mb-0 text-gray-800">Clients</h1>
+    <h1 class="h3 mb-0 text-gray-800 client" >Clients</h1>
     <%= link_to "Add Client" , new_client_path , class: "btn btn-primary float-right" %>
   </div>
-
-    <%= turbo_frame_tag "clients" do %>
-      <div class="row">
-        <%= render @clients %>
-      </div>
-    <% end %>
 </div>
+
+<%= turbo_frame_tag "clients" do %>
+  <div class="row">
+    <%= render @clients %>
+  </div>
+<% end %>
