@@ -1,13 +1,15 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class InvoicesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get invoices_index_url
+require 'test_helper'
+
+class DocumentsControllerTest < ActionDispatch::IntegrationTest
+  test 'should get index' do
+    get documents_index_url
     assert_response :success
   end
 
-  test "should get destroy" do
-    get invoices_destroy_url
+  test 'should get destroy' do
+    get documents_destroy_url
     assert_response :success
   end
 end

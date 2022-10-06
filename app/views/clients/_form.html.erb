@@ -28,7 +28,7 @@
                 <br />
                 <%= ff.label :api_method %>
                 <div class="col-sm-6 row">
-                  <%= ff.collection_select :api_method, Api.api_methods, :first, :first, include_blank: true ,class: "form-control form-control-user"  %>
+                  <%= ff.collection_select :api_method, Api.api_methods, :first, :first, {include_blank: true} ,{class: "form-control form-control-user text-capitalize"}  %>
                 </div>
                 <br />
                 <div class="col-sm-6 row">
@@ -39,8 +39,8 @@
                 <div class="actions">
                   <%= form.submit class:"btn btn-primary btn-user" %> |
                   <%= link_to "Back" , clients_path, class: "btn btn-primary"%>
-
                 </div>
+              </form>
             </div>
           </div>
         </div>

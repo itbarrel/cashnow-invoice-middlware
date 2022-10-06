@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <th>Supplier Id</th>
+        <th>Supplier Name</th>
+        <th>Document Number</th>
+        <th>Document Date</th>
+        <th>Maturity Date</th>
+        <th>Document Amount</th>
+        <th>Tax Amount</th>
+        <th>Document Total</th>
+    </tr>
+    <% @documents.each do |document| %>
+        <tr>
+            <td><%= document&.vendor.vendor_code %></td>
+            <td><%= document&.data['vendor_name'] %></td>
+            <td><%= document&.data['vendor_invoice_no'] %></td>
+            <td><%= document&.data['vendor_invoice_date']&.to_date&.strftime('%d-%m-%Y') %></td>
+            <td><%= nil %></td>
+            <td><%= document&.data['vendor_invoice_amount'].to_f %></td>
+            <td><%= document&.data['vendor_invoice_tax'].to_f %></td>
+            <td><%= (document&.data['vendor_invoice_amount']&.to_f + document&.data['vendor_invoice_tax']&.to_f) %></td>
+        </tr>
+    <% end %>
+</table>

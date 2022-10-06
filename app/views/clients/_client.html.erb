@@ -13,7 +13,7 @@
                                 <strong>UserName: </strong> <%= client.username %>
                                 <strong>Password: </strong> <%= client.password %>
                                 <% if client.token.present? %>
-                                    <p><strong>Token</strong> <%= client.token %></p>
+                                    <p><strong>Token: </strong> <%= client.token %></p>
                                 <% end %>
                             </div>
                             <div class="col-xs-3 col-md-4 col-ms-4">
@@ -27,18 +27,18 @@
                         </div>
                     </li>
                     <% if client.login_api.present? %>
-                    <li>
-                        <h5>Login API</h5>
-                        <%= render partial: "apis/api", locals: { client: client, api: client.login_api } %>
-                    </li>
+                        <li>
+                            <h5>Login API</h5>
+                            <%= render partial: "apis/api", locals: { client: client, api: client.login_api } %>
+                        </li>
                     <% end %>
                     <% if client.apis.present? %>
-                    <li>
-                        <h5>Data Fetch API</h5>
-                        <% client.apis.each_with_index do |api, index| %>
-                            <%= render partial: "apis/api", locals: { client: client, api: api } %>
-                        <% end %>
-                    </li>
+                        <li>
+                            <h5>Data Fetch API</h5>
+                            <% client.apis.each_with_index do |api, index| %>
+                                <%= render partial: "apis/api", locals: { client: client, api: api } %>
+                            <% end %>
+                        </li>
                     <% end %>
                 </ul>
             </div>

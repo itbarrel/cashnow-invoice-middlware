@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(document), class: "card shadow col-md-4" do %>
+    <div class="card-body">
+        <% if document.data.present? && (document.data.kind_of?(Hash) || document.data.kind_of?(Object)) %>
+            <% document.data.keys.each do |key| %>
+                <% if key.include?('invoice') %>
+                    <%= key %> = <%= document.data[key] %><br>
+                <% end %>
+            <% end %>
+        <% else %>
+            No Data Found
+        <% end %>
+    </div>
+<% end %>

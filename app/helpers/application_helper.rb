@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def toastr_flash
     flash.each_with_object([]) do |(type, message), flash_messages|
