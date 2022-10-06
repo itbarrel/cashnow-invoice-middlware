@@ -13,6 +13,7 @@ module Cashnow
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.active_job.queue_adapter = :sidekiq
+    config.paths.add Rails.root.join('lib').to_s, eager_load: true
 
     # Configuration for the application, engines, and railties goes here.
     #

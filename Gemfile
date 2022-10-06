@@ -13,8 +13,10 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'sidekiq', '~> 6.2', '>= 6.2.2'
+gem "sidekiq-scheduler", "~> 4.0"
 gem 'sinatra', '~> 2.1'
 gem 'webpacker', '~> 5.0'
+gem "net-ftp", "~> 0.1.3"
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap-daterangepicker-rails'
