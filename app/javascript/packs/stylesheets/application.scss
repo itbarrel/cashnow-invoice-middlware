@@ -27,7 +27,7 @@
         cursor: pointer;
     }
 
-    .dropdown {
+    .button_dropdown {
         margin-left: -20px !important;
     }
 
@@ -38,6 +38,10 @@
     .container_setting {
         margin-left: 15px;
         margin-right: 13px;
+    }
+
+    .non_dropdown{
+        display: none;
     }
 }
 
@@ -75,6 +79,10 @@
 
     .back_btn {
         margin: 8px;
+    }
+
+    .non_dropdown{
+        display: none;
     }
 }
 
@@ -124,14 +132,31 @@
 }
 
 // For large desktop
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .button_dropdown {
         display: none;
     }
 
     .container_setting {
         margin-left: -13px;
-        margin-right: 14px;
+        margin-right: 24px;
+    }
+
+    .client {
+        margin: 30px;
+    }
+
+}
+
+@media only screen and (min-width: 1601px) and (max-width: 1920px) {
+    .button_dropdown {
+        display: none;
+    }
+
+    .container_setting {
+        // margin-left: -310px;
+        margin-right: 27px;
+        margin-left: -15px;
     }
 
     .client {
