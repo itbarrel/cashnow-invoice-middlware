@@ -7,7 +7,7 @@ class FtpClientWorker
         if connection.present?
             f = connection.nlst('*.txt')
             f.each do |x|
-                connection.gettextfile(x, "./ftp_files/#{x}")
+                connection.gettextfile(x, "#{Rails.root}/ftp_files/#{x}")
             end
             connection.close()
             ClientMailer.mailer(client).deliver if connection.closed?()
