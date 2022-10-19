@@ -10,8 +10,8 @@ services:
     build:
       context: .
       dockerfile: DockerFile
-    # volumes:
-    #   - ./:/var/www/cashnow/
+    volumes:
+      - ./ftp_files:/var/www/cashnow/ftp_files
     external_links:
       - pg_12:pg_12
     # restart: always
