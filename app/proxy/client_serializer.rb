@@ -2,7 +2,7 @@
 
 class ClientSerializer
   def initialize(client_id)
-    Client.find_by_id(client_id)
+    @client = Client.find_by_id(client_id)
   end
 
   def api_url

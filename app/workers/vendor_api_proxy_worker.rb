@@ -7,8 +7,8 @@ class VendorApiProxyWorker
     formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y')
     # formated_time = Time.now.in_time_zone('Asia/Karachi').strftime('%a, %d %B %Y %I:%M %p')
     ig = DocumentGroup.where(title: formated_time, vendor: vendor).first_or_create
-    duplicate_documents = ig.documents.where("data->>'vendor_document_no' = ?", data_to_post['vendor_document_no'])
-    data_to_post['vendor_document_date'] = data_to_post['vendor_document_date'].to_date.strftime('%d-%b-%Y')
+    duplicate_documents = ig.documents.where("data->>'vendor_invoice_no' = ?", data_to_post['vendor_invoice_no'])
+    data_to_post['vendor_invoice_date'] = data_to_post['vendor_invoice_date'].to_date.strftime('%d-%b-%Y')
     if duplicate_documents.length.zero?
       Document.create(data: data_to_post, document_group: ig)
     else
