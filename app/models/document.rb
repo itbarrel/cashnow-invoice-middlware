@@ -37,9 +37,9 @@ class Document < ApplicationRecord
           document.data['vendor_invoice_no'],
           document.data['vendor_invoice_date'].to_date.strftime('%d-%m-%Y'),
           nil,
-          document.data['vendor_invoice_amount'].to_f,
+          (document.data['vendor_invoice_amount'].to_f - document.data['vendor_invoice_tax'].to_f),
           document.data['vendor_invoice_tax'].to_f,
-          (document.data['vendor_invoice_amount'].to_f + document.data['vendor_invoice_tax'].to_f)
+          document.data['vendor_invoice_amount'].to_f
         ]
         csv << row_data
       end
