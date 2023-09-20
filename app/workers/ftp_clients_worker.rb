@@ -1,9 +1,11 @@
-class FtpClientsWorker
-    include Sidekiq::Worker
+# frozen_string_literal: true
 
-    def perform
-        Client.find_each do |client|
-            FtpClientWorker.perform_async(client.id)
-        end
+class FtpClientsWorker
+  include Sidekiq::Worker
+
+  def perform
+    Client.find_each do |client|
+      FtpClientWorker.perform_async(client.id)
     end
+  end
 end

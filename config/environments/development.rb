@@ -79,9 +79,9 @@ Rails.application.configure do
 
   config.action_controller.forgery_protection_origin_check = false
 
-  config.hosts << "invoice.cashnow.pk"
-  config.hosts << "localhost"
-  config.hosts << "172.17.0.1"
+  config.hosts << 'invoice.cashnow.pk'
+  config.hosts << 'localhost'
+  config.hosts << '172.17.0.1'
   config.webpacker.check_yarn_integrity = false
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true

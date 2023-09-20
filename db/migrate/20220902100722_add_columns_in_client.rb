@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsInClient < ActiveRecord::Migration[6.1]
   def change
     add_column :clients, :ftp_host, :string

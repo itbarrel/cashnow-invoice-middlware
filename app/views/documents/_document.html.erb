@@ -2,7 +2,7 @@
     <div class="card card_style mb-3">
         <% if document.data.present? && (document.data.kind_of?(Hash) || document.data.kind_of?(Object)) %>
             <% document.data.keys.each do |key| %>
-                <% if key.include?('invoice') %>
+                <% if key.include?('invoice') || key.include?('payment') %>
                     <%= key %> = <%= document.data[key] %><br>
                 <% end %>
             <% end %>

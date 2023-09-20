@@ -45,7 +45,7 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   config.action_cable.url = 'wss://invoice.cashnow.pk/cable'
-  config.action_cable.allowed_request_origins = [ 'http://invoice.cashnow.pk', /http:\/\/invoice.*/, /https:\/\/invoice.*/ ]
+  config.action_cable.allowed_request_origins = ['http://invoice.cashnow.pk', %r{http://invoice.*}, %r{https://invoice.*}]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -121,19 +121,20 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.webpacker.check_yarn_integrity = false
-  config.hosts << "invoice.cashnow.pk"
-  config.hosts << "localhost"
-  config.hosts << "172.17.0.1"
+  config.hosts << 'invoice.cashnow.pk'
+  config.hosts << 'localhost'
+  config.hosts << '172.17.0.1'
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
-  port:                 587,
-  domain:               'invoice.cashnow.pk',
-  user_name:             ENV['SMTP_EMAIL'],
-  password:              ENV['SMTP_PASS'],
-  authentication:       'plain',
-  enable_starttls_auto: true,
-  open_timeout:         5,
-  read_timeout:         5 }
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'invoice.cashnow.pk',
+    user_name: ENV['SMTP_EMAIL'],
+    password: ENV['SMTP_PASS'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5
+  }
 end

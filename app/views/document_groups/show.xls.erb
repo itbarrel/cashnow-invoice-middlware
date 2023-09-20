@@ -2,12 +2,15 @@
     <tr>
         <th>Supplier Id</th>
         <th>Supplier Name</th>
-        <th>Document Number</th>
-        <th>Document Date</th>
+        <th>Invoice Number</th>
+        <th>Invoice Date</th>
         <th>Maturity Date</th>
-        <th>Document Amount</th>
+        <th>Invoice Amount</th>
         <th>Tax Amount</th>
-        <th>Document Total</th>
+        <th>Invoice Total</th>
+        <th>Payment Date</th>
+        <th>Payment Amount</th>
+        <th>Chq/RTGS</th>
     </tr>
     <% @documents.each do |document| %>
         <tr>
@@ -19,6 +22,9 @@
             <td><%= (document&.data['vendor_invoice_amount']&.to_f - document&.data['vendor_invoice_tax']&.to_f) %></td>
             <td><%= document&.data['vendor_invoice_tax'].to_f %></td>
             <td><%= document&.data['vendor_invoice_amount'].to_f %></td>
+            <td><%= document&.data['payment_instr_date']&.to_date&.strftime('%d-%m-%Y') %></td>
+            <td><%= document.data['payment_instr_amount'].to_f %></td>
+            <td><%= document.data['payment_instr_amount'].present? ? "online" : "offline" %></td>
         </tr>
     <% end %>
 </table>

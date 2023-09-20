@@ -24,7 +24,10 @@ class Document < ApplicationRecord
       'Maturity Date',
       'Invoice Amount',
       'Tax Amount',
-      'Invoice Total'
+      'Invoice Total',
+      'Payment Date',
+      'Payment Amount',
+      'Chq/RTGS'
     ]
 
     CSV.generate(headers: true) do |csv|
@@ -39,7 +42,10 @@ class Document < ApplicationRecord
           nil,
           (document.data['vendor_invoice_amount'].to_f - document.data['vendor_invoice_tax'].to_f),
           document.data['vendor_invoice_tax'].to_f,
-          document.data['vendor_invoice_amount'].to_f
+          document.data['vendor_invoice_amount'].to_f,
+          document&.data['payment_instr_date']&.to_date&.strftime('%d-%m-%Y'),
+          document.data['payment_instr_amount'].to_f,
+          document.data['payment_instr_amount'].present? ? "online" : "offline",
         ]
         csv << row_data
       end

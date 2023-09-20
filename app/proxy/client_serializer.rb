@@ -25,10 +25,15 @@ class ClientSerializer
     return nil if @client.token.nil?
     return nil if vendor.nil?
 
+    from_date = 30.days.ago.strftime('%Y%m%d')
+    to_date = Time.zone.now.strftime('%Y%m%d')
+
     {
       'client_id' => @client.username,
       'token' => @client.token,
-      'vendor_code' => vendor.vendor_code
+      'vendor_code' => vendor.vendor_code,
+      'from_date' => from_date,
+      'to_date' => to_date
     }
   end
 end
