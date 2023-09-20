@@ -12,7 +12,9 @@ class VendorApiProxyWorker
     if duplicate_documents.length.zero?
       Document.create(data: data_to_post, document_group: dg)
     else
-      duplicate_documents.first.update(data: data_to_post)
+      duplicate_documents.each do |dup|
+        dup.update(data: dup.data.merge(data_to_post))
+      end
     end
   end
 
