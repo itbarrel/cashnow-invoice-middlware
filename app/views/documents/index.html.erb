@@ -11,3 +11,4 @@
 <%= turbo_frame_tag "document_groups" do %>
   <%= render @document_groups.order("downloaded, date(title) DESC") %>
 <% end %>
+<%= render 'shared/pagination', query: {}, js_request: false if @pagy.present? %>

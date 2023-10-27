@@ -45,7 +45,7 @@ class Document < ApplicationRecord
           document.data['vendor_invoice_amount'].to_f,
           document&.data['payment_instr_date']&.to_date&.strftime('%d-%m-%Y'),
           document.data['payment_instr_amount'].to_f,
-          document.data['payment_instr_amount'].present? ? "online" : "offline",
+          document.data['payment_instr_amount'].present? ? 'online' : 'offline'
         ]
         csv << row_data
       end

@@ -9,14 +9,15 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 
 gem 'httparty', '~> 0.20.0'
 gem 'jbuilder', '~> 2.7'
+gem 'net-ftp', '~> 0.1.3'
+gem 'pagy', '~> 6.1'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'sidekiq', '~> 6.2', '>= 6.2.2'
-gem "sidekiq-scheduler", "~> 4.0"
+gem 'sidekiq-scheduler', '~> 4.0'
 gem 'sinatra', '~> 2.1'
 gem 'webpacker', '~> 5.0'
-gem "net-ftp", "~> 0.1.3"
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap-daterangepicker-rails'
@@ -35,19 +36,18 @@ end
 
 group :development do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'letter_opener', '~> 1.8'
   gem 'listen', '~> 3.3'
+  gem 'pry-remote', '~> 0.1.8'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
-  gem "letter_opener", "~> 1.8"
-  gem "pry-remote", "~> 0.1.8"
 end
 
 group :test do
   gem 'webdrivers'
 end
-
 

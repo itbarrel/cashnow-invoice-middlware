@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  include ApplicationHelper
+
   before_action :authenticate_user!
   before_action :general_initilization
 
